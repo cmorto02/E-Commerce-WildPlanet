@@ -25,8 +25,12 @@ namespace MyShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            /*string connectionString = Environment.IsDevelopment()
+                                       ? Configuration["ConnectionString:DefaultConnection"]
+                                       : Configuration["ConnectionString:ProductionConnection"]; 
+           services.AddDbContext<MyShopDbContext>(options => options.UseSqlServer(connectionString));*/
             services.AddDbContext<MyShopDbContext>(options =>
-     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+     options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +40,7 @@ namespace MyShop
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
