@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyShop.Services
 {
-    public class InventoryService : IInventory
+    public class InventoryService : IInventoryManager
     {
     }
 }
