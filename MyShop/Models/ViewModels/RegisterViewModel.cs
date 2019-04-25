@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyShop.Models.ViewModels
 {
+
     public class RegisterViewModel
     {
         /*  public string FirstName { get; set; }
@@ -33,3 +34,4 @@ namespace MyShop.Models.ViewModels
 
     }
 }
+
