@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyShop.Interfaces
 {
-    interface IInventory
+    interface IInventoryManager
     {
         void CreateProduct(Product product);
 
