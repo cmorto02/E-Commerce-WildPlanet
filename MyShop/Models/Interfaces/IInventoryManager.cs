@@ -8,7 +8,6 @@ namespace MyShop.Interfaces
 {
     public interface IInventoryManager
     {
-        void CreateProduct(Product product);
 
         Task<List<Product>> GetALLProducts();
 

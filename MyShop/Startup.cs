@@ -49,6 +49,7 @@ namespace MyShop
 
             services.AddDbContext<MyShopDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IInventoryManager, InventoryService>();
 
         }
 

@@ -16,17 +16,6 @@ namespace MyShop.Models.Services
         {
             _context = context;
         }
-
-        public void CreateProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<Product>> GetALLProducts()
         {
             return await _context.Product.ToListAsync();
@@ -37,9 +26,6 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
-        public void Update(int id)
-        {
-            throw new NotImplementedException();
-        }
+  
     }
 }

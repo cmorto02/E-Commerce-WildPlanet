@@ -13,7 +13,7 @@
 
 
 
-<form method="post">
+<form asp-action="Create">
     <div asp-validation-summary="All" class="Text-danger"></div>
 
     <label asp-for="Email"></label>
@@ -40,6 +40,6 @@
     <label asp-for="ConfirmPassword"></label>
     <input asp-for="ConfirmPassword" />
     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    <button type="submit">Register User</button>
+    <button type="submit" >Register User</button>
 </form>
 
