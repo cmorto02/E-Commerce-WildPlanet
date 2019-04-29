@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyShop.Models;
+using MyShop.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,45 +9,42 @@ using System.Threading.Tasks;
 
 namespace MyShop.Controllers
 {
-    public class AccountController
-    {
-        public AccountController()
-        {
 
-            /*
-            async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public class AccountController : Controller
+        {
+            private UserManager<ApplicationUser> _userManager;
+            private SignInManager<ApplicationUser> _signInManager;
+
+
+            public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
             {
-                returnUrl = returnUrl ?? Url.Content("~/");
+                _userManager = userManager;
+                _signInManager = signInManager;
+            }
+
+            [HttpGet]
+            public IActionResult Register()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            public async Task<IActionResult> Register(RegisterViewModel rvm)
+            {
                 if (ModelState.IsValid)
                 {
-                    var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-                    var result = await _userManager.CreateAsync(user, Input.Password);
-                    if (result.Succeeded)
+                    ApplicationUser user = new ApplicationUser
                     {
-                        _logger.LogInformation("User created a new account with password.");
-
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { userId = user.Id, code = code },
-                            protocol: Request.Scheme);
-
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                        Email = rvm.Email,
+                        UserName = rvm.Email,
+                        FirstName = rvm.FirstName,
+                        LastName = rvm.LastName,
+                        Birthday = rvm.Birthday
+                    };
+                    var result = await _userManager.CreateAsync(user, rvm.Password);
+                    RedirectToAction("Index", "Home");
                 }
-                
-                // If we got this far, something failed, redisplay form
-                return Page();
-            }*/
+                return View(rvm);
+            }
         }
-    }
 }
