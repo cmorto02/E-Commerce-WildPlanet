@@ -128,6 +128,6 @@ namespace MyShop.data
                     AmmountLeft = 43,
                 });
         }
-        public DbSet<Product> products { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

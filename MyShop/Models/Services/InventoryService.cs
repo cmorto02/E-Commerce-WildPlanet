@@ -1,4 +1,5 @@
-﻿using MyShop.data;
+﻿using Microsoft.EntityFrameworkCore;
+using MyShop.data;
 using MyShop.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,9 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
-        public void GetALLProducts()
+        public async Task<List<Product>> GetALLProducts()
         {
-            throw new NotImplementedException();
+            return await _context.Product.ToListAsync();
         }
 
         public void GetByID(int id)

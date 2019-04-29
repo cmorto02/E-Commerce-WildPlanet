@@ -10,7 +10,7 @@ namespace MyShop.Interfaces
     {
         void CreateProduct(Product product);
 
-        void GetALLProducts();
+        Task<List<Product>> GetALLProducts();
 
         void GetByID(int id);
 

@@ -32,6 +32,16 @@ namespace MyShop.Models.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage ="The passwords do not match")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Do you love animals?")]
+        public bool LoveAnimals { get; set; }
+
     }
 }
 
