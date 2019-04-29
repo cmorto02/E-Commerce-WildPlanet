@@ -19,7 +19,7 @@ namespace MyShop.data
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
-                    ID = 0,
+                    ID = 1,
                     Name = "Pangolin",
                     Price = 2400.00,
                     Description = "Name a pangolin and receive a plush.",
@@ -30,7 +30,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 1,
+                    ID = 2,
                     Name = "Amur Leopard",
                     Price = 2400.00,
                     Description = "Name an Amur Leopard and receive a plush.",
@@ -41,7 +41,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 2,
+                    ID = 3,
                     Name = "Sumatran Orangutan",
                     Price = 2400.00,
                     Description = "Name a Sumatran Orangutan and receive a plush.",
@@ -52,7 +52,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 3,
+                    ID = 4,
                     Name = "Cross River Gorilla",
                     Price = 2400.00,
                     Description = "Name a Cross River Gorilla and receive a plush.",
@@ -63,7 +63,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 4,
+                    ID = 5,
                     Name = "Hawksbill Sea Turtle",
                     Price = 2400.00,
                     Description = "Name a Hawksbill Sea Turtle and receive a plush.",
@@ -74,7 +74,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 5,
+                    ID = 6,
                     Name = "Sumatran Tiger",
                     Price = 2400.00,
                     Description = "Name a Sumatran Tiger and receive a plush.",
@@ -85,7 +85,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 6,
+                    ID = 7,
                     Name = "Black Rhino",
                     Price = 2400.00,
                     Description = "Name a Black Rhino and receive a plush.",
@@ -96,7 +96,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 7,
+                    ID = 8,
                     Name = "Snow Leopard",
                     Price = 2400.00,
                     Description = "Name a Snow Leopard and receive a plush.",
@@ -107,7 +107,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 8,
+                    ID = 9,
                     Name = "Polar Bear",
                     Price = 2400.00,
                     Description = "Name a Polar Bear and receive a plush.",
@@ -118,7 +118,7 @@ namespace MyShop.data
                 },
                 new Product
                 {
-                    ID = 9,
+                    ID = 10,
                     Name = "Giant Panda",
                     Price = 2400.00,
                     Description = "Name a Giant Panda and receive a plush.",

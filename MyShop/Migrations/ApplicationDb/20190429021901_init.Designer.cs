@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyShop.data;
 
-namespace MyShop.Migrations
+namespace MyShop.Migrations.ApplicationDb
 {
-    [DbContext(typeof(MyShopDbContext))]
-    [Migration("20190423175452_initial")]
-    partial class initial
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20190429021901_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
