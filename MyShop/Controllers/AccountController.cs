@@ -5,6 +5,7 @@ using MyShop.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MyShop.Controllers
@@ -31,20 +32,62 @@ namespace MyShop.Controllers
             [HttpPost]
             public async Task<IActionResult> Register(RegisterViewModel rvm)
             {
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = new ApplicationUser
                 {
-                    ApplicationUser user = new ApplicationUser
-                    {
-                        Email = rvm.Email,
-                        UserName = rvm.Email,
-                        FirstName = rvm.FirstName,
-                        LastName = rvm.LastName,
-                        Birthday = rvm.Birthday
-                    };
-                    var result = await _userManager.CreateAsync(user, rvm.Password);
+                    Email = rvm.Email,
+                    UserName = rvm.Email,
+                    FirstName = rvm.FirstName,
+                    LastName = rvm.LastName,
+                    Birthday = rvm.Birthday,
+                    LoveAnimals = rvm.LoveAnimals
+                };
+                var result = await _userManager.CreateAsync(user, rvm.Password);
+
+                if (result.Succeeded)
+                {
+                    Claim nameClaim = new Claim("FullName", $"{user.FirstName} { user.LastName} ");
+
+                    Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
+
+                    Claim dateOfBirthClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"), ClaimValueTypes.DateTime);
+
+                    Claim loveAnimalsClaim = new Claim("User loves animals", Convert.ToString(user.LoveAnimals), ClaimValueTypes.Boolean);
+
+                    List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim };
+                    await _userManager.AddClaimsAsync(user, claims);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
                     RedirectToAction("Index", "Home");
                 }
-                return View(rvm);
             }
+            return View(rvm);
+                
+            }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel lvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+            return View(lvm);
+            {
+
+            }
+        }
         }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyShop.Models;
+﻿using MyShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace MyShop.Interfaces
 {
-    public interface IInventoryManager
+    interface IInventoryManager
     {
-        Task CreateProduct(Product product);
+        void CreateProduct(Product product);
 
-        Task<IEnumerable<Product>> GetALLProducts();
+        Task<List<Product>> GetALLProducts();
 
-        Task<IActionResult> GetProduct(int id);
+        void GetByID(int id);
 
-        Task UpdateProduct(int id, Product product);
+        void Update(int id);
 
-        Task<Product> DeleteProduct(int id);
-
-        Task<IActionResult> DeleteProductFR(int id);
+        void Delete(int id);
     }
 }

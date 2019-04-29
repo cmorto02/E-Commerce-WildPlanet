@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.EntityFrameworkCore;
 using MyShop.data;
 using MyShop.Interfaces;
 using System;
@@ -27,19 +27,9 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
-        public Task<Product> DeleteProduct(int id)
+        public async Task<List<Product>> GetALLProducts()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IActionResult> DeleteProductFR(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetALLProducts()
-        {
-            throw new NotImplementedException();
+            return await _context.Product.ToListAsync();
         }
 
         public void GetByID(int id)
@@ -47,27 +37,7 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
-        public Task<IActionResult> GetProduct(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Update(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateProduct(int id, Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IInventoryManager.CreateProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Product>> IInventoryManager.GetALLProducts()
         {
             throw new NotImplementedException();
         }
