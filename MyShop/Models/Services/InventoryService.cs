@@ -1,4 +1,5 @@
-﻿using MyShop.data;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyShop.data;
 using MyShop.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,16 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
+        public Task<Product> DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IActionResult> DeleteProductFR(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void GetALLProducts()
         {
             throw new NotImplementedException();
@@ -36,7 +47,27 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
+        public Task<IActionResult> GetProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateProduct(int id, Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IInventoryManager.CreateProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<IActionResult>> IInventoryManager.GetALLProducts()
         {
             throw new NotImplementedException();
         }

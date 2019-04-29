@@ -15,7 +15,7 @@ namespace MyShop.Controllers
         {
             _context = context;
         }
-        public Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var Inventory = await _context.GetALLProducts();
             var inventory = from m in Inventory
