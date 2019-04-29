@@ -18,11 +18,10 @@ namespace MyShop.Controllers
         public async Task<IActionResult> Index()
         {
             var Inventory = await _context.GetALLProducts();
-            var inventory = from m in Inventory
-                            select m;
+         
 
 
-            return View(inventory);
+            return View(Inventory);
         }
     }
 }

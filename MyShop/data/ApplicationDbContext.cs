@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.CSharp.Formatting;
+using Microsoft.EntityFrameworkCore;
+using MyShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +14,8 @@ namespace MyShop.data
         {
 
         }
+
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
