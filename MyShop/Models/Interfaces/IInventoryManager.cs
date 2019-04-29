@@ -11,7 +11,7 @@ namespace MyShop.Interfaces
     {
         Task CreateProduct(Product product);
 
-        Task<IEnumerable<IActionResult>> GetALLProducts();
+        Task<IEnumerable<Product>> GetALLProducts();
 
         Task<IActionResult> GetProduct(int id);
 

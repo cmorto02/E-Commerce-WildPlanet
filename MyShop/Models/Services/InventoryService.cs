@@ -67,7 +67,7 @@ namespace MyShop.Models.Services
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<IActionResult>> IInventoryManager.GetALLProducts()
+        Task<IEnumerable<Product>> IInventoryManager.GetALLProducts()
         {
             throw new NotImplementedException();
         }
