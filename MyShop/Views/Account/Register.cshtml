@@ -6,14 +6,7 @@
 }
 
 <h1>Register!</h1>
-
-
-
-
-
-
-
-<form asp-action="Create">
+<form method="post">
     <div asp-validation-summary="All" class="Text-danger"></div>
 
     <label asp-for="Email"></label>
@@ -36,10 +29,14 @@
     <input asp-for="Password" />
     <span asp-validation-for="Password" class="text-danger"></span>
 
-
     <label asp-for="ConfirmPassword"></label>
     <input asp-for="ConfirmPassword" />
     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    <button type="submit" >Register User</button>
+
+    <label asp-for="LoveAnimals"></label>
+    <input type="checkbox" asp-for="LoveAnimals" />
+    <span asp-validation-for="LoveAnimals" class="text-danger"></span>
+
+    <button type="submit"value="Register">Register User</button>
 </form>
 
