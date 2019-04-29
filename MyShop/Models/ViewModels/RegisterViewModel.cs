@@ -40,7 +40,7 @@ namespace MyShop.Models.ViewModels
 
         [Required]
         [Display(Name = "Do you love animals?")]
-        public bool LoveAnimals { get; set; }
+        public string LoveAnimals { get; set; }
 
     }
 }

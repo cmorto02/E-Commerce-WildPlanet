@@ -11,6 +11,6 @@ namespace MyShop.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
-        public bool LoveAnimals { get; set; }
+        public string LoveAnimals { get; set; } = "false";
     }
 }
