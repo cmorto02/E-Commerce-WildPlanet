@@ -40,7 +40,8 @@ namespace MyShop.Controllers
                     UserName = rvm.Email,
                     FirstName = rvm.FirstName,
                     LastName = rvm.LastName,
-                    Birthday = rvm.Birthday
+                    Birthday = rvm.Birthday,
+                    LoveAnimals = rvm.LoveAnimals
                 };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
@@ -52,7 +53,9 @@ namespace MyShop.Controllers
 
                     Claim dateOfBirthClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"), ClaimValueTypes.DateTime);
 
-                    List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim };
+                    Claim loveAnimalsClaim = new Claim("User loves animals", Convert.ToString(user.LoveAnimals), ClaimValueTypes.Boolean);
+
+                    List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim };
                     await _userManager.AddClaimsAsync(user, claims);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
