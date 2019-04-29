@@ -11,27 +11,27 @@ using System.Threading.Tasks;
 namespace MyShop.Controllers
 {
 
-        public class AccountController : Controller
+    public class AccountController : Controller
+    {
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
+
+
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
-            private UserManager<ApplicationUser> _userManager;
-            private SignInManager<ApplicationUser> _signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
 
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
 
-            public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
-            {
-                _userManager = userManager;
-                _signInManager = signInManager;
-            }
-
-            [HttpGet]
-            public IActionResult Register()
-            {
-                return View();
-            }
-
-            [HttpPost]
-            public async Task<IActionResult> Register(RegisterViewModel rvm)
-            {
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel rvm)
+        {
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser
@@ -53,9 +53,9 @@ namespace MyShop.Controllers
 
                     Claim dateOfBirthClaim = new Claim(ClaimTypes.DateOfBirth, new DateTime(user.Birthday.Year, user.Birthday.Month, user.Birthday.Day).ToString("u"), ClaimValueTypes.DateTime);
 
-                    Claim loveAnimalsClaim = new Claim("User loves animals", Convert.ToString(user.LoveAnimals), ClaimValueTypes.Boolean);
+                    Claim loveAnimalsClaim = new Claim("LovesAnimals", user.LoveAnimals);
 
-                    List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim };
+                    List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim};
                     await _userManager.AddClaimsAsync(user, claims);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
@@ -63,8 +63,8 @@ namespace MyShop.Controllers
                 }
             }
             return View(rvm);
-                
-            }
+
+        }
         [HttpGet]
         public IActionResult Login()
         {
@@ -89,5 +89,17 @@ namespace MyShop.Controllers
 
             }
         }
+
+        public bool CheckNumbers(int[] numbers, int check)
+        {
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (check<numbers[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+    }
 }
