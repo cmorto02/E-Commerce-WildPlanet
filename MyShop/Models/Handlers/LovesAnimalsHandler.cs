@@ -16,9 +16,9 @@ namespace MyShop.Models.Handlers
                 return Task.CompletedTask;
             }
 
-            var lovesAnimals = Convert.ToBoolean(context.User.FindFirst(c => c.Type == "LovesAnimals").Value);
+            var lovesAnimals = context.User.FindFirst(c => c.Type == "LovesAnimals").Value;
 
-            if (lovesAnimals == true)
+            if (lovesAnimals == requirement.laRequirement)
             {
                 context.Succeed(requirement);
             }
