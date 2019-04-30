@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyShop.Controllers
 {
-    [Authorize(Policy = "LovesAnimalsPolicy")]
+    [Authorize(Policy = "LovesAnimals")]
     public class LovesAnimalsController : Controller
     {
         public IActionResult Index()
