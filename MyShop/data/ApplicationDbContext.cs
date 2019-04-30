@@ -18,7 +18,7 @@ namespace MyShop.data
         }
 
 
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         //public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
 
