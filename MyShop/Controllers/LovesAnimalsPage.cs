@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace MyShop.Controllers
 {
-    [Authorize(Policy ="")]
-    public class LovesAnimalsPage : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [Authorize]
-        public IActionResult LovesAnimals()
-        {
-            return View();
-        }
-    }
+    //[Authorize(Policy ="")]
+    //public class LovesAnimalsPage : Controller
+    //{
+    //    public IActionResult Index()
+    //    {
+    //        return View();
+    //    }
+    //    [Authorize]
+    //    public IActionResult LovesAnimals()
+    //    {
+    //        return View();
+    //    }
+    //}
 }

@@ -9,9 +9,7 @@ namespace MyShop.Models.ViewModels
 
     public class RegisterViewModel
     {
-        /*  public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime Birthday */
+       
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
