@@ -8,7 +8,7 @@ namespace MyShop.Models.Handlers
 {
     public class LovesAnimals : IAuthorizationRequirement
     {
-        public string laRequirement { get; set; }
+        public string laRequirement = "true";
     }
 
 }
