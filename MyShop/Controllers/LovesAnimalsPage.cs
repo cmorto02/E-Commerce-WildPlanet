@@ -10,10 +10,13 @@ namespace MyShop.Controllers
     [Authorize(Policy ="")]
     public class LovesAnimalsPage : Controller
     {
+
         public IActionResult Index()
         {
             return View();
         }
+
+
         [Authorize]
         public IActionResult LovesAnimals()
         {
