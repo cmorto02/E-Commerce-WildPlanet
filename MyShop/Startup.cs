@@ -42,7 +42,7 @@ namespace MyShop
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("LovesAnimalsPolicy", policy => policy.Requirements.Add(new LovesAnimals()));
+                options.AddPolicy("LovesAnimals", policy => policy.Requirements.Add(new LovesAnimals()));
             });
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
