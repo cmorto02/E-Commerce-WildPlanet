@@ -57,7 +57,7 @@ namespace MyShop.Controllers
 
                     List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim};
                     await _userManager.AddClaimsAsync(user, claims);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
 
                     RedirectToAction("Index", "Home");
                 }
@@ -88,18 +88,6 @@ namespace MyShop.Controllers
             {
 
             }
-        }
-
-        public bool CheckNumbers(int[] numbers, int check)
-        {
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (check<numbers[i])
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }
