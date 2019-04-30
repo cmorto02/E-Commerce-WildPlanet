@@ -40,6 +40,10 @@ namespace MyShop
                                        : Configuration["ConnectionString:ProductionConnection"]; 
            services.AddDbContext<MyShopDbContext>(options => options.UseSqlServer(connectionString));*/
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("LovesAnimalsPolicy", policy => policy.Requirements.Add(new LovesAnimals()));
+            });
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -53,10 +57,6 @@ namespace MyShop
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IInventoryManager, InventoryService>();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("LovesAnimalsPolicy", policy => policy.Requirements.Add(new LovesAnimals()));
-            });
 
             services.AddScoped<IAuthorizationHandler, LovesAnimalsHandler>();
 
@@ -66,11 +66,11 @@ namespace MyShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
