@@ -57,6 +57,7 @@ namespace MyShop.Controllers
                     ModelState.AddModelError(string.Empty, "I'm sorry, something went wrong. Please try again.");
                 }
 
+
                 if (result.Succeeded)
                 {
                     Claim nameClaim = new Claim("FullName", $"{user.FirstName} { user.LastName} ");
@@ -72,6 +73,7 @@ namespace MyShop.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return RedirectToAction("Index", "Home");
+
                 }
             }
             return View(rvm);

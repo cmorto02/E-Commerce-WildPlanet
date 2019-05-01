@@ -50,11 +50,11 @@ namespace MyShop
                 .AddDefaultTokenProviders();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault")));
+           options.UseSqlServer(Configuration.GetConnectionString("UserDataConnection")));
 
 
             services.AddDbContext<MyShopDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
             services.AddScoped<IInventoryManager, InventoryService>();
 
 
