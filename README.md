@@ -3,7 +3,17 @@
 ## We are deployed on Azure!
 
 https://wildplanet.azurewebsites.net/
-
+What is the product you are selling?
+Stuffed animals and Name rights for individual species that are endangered.
+What claims are you capturing? Where? Why?
+On registration we are capturing claims : FirstNameClaim - To store the first name of an user to render both first and last in custom message
+                                        LastNameClaim - To store the last name of an user to render both the last and the first in a custom message
+                                        BirthdayClaim - The birthday claim is not yet utilizes however we will be restricting our site to potentially only be checked out by an adult.
+                                        LovesAnimalsClaim - This claim is required to access a policy page that is implimented
+What Policies are you enforcing? Where? Why? Directions on how to test.
+We are enforcing the Loves animals claim in a policy for the "Exclusive" page of our website. this is so we can restrict the accessability of our users, on our site. you can test this by making an account and NOT checking the "Loves animals" check box on registration,
+And then requesting to access the "Exclusive" page: This will result in a "Not authorized" and you will need to make another account that meets the requirements or not access that page.
+Link to your deployed website
 ---------------------------------
 ## Web Application
 
@@ -121,14 +131,20 @@ Unit testing is included in the AmandaFE/FrontendTesting project using the xUnit
 ---------------------------
 
 ## Change Log
-1.0: *Site launch 30 April 2019
-1.1: *Added ability for user to change photos on a post* - 12 May 1998
+1.0: *Site launched 5/1/2019
+
 
 ------------------------------
 
 ## Authors
 Tanner Percival
 Chris Morton
+##Collaberators
+Amanda Iverson
+Nate Tibbals
+Dan Logerstedt & Andrew Curtis
+
+
 
 ------------------------------
 
