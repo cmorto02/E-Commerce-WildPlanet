@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MyShop.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_layout";
+}
+
+<h1>Shop</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageStuffedAnimal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmmountLeft)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageAnimal)
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImageStuffedAnimal)" alt="img" style="width:300px" />
+                    <a href="#">Purchase</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmmountLeft)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Description)
+
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImageAnimal)" alt="img" style="width:300px" />
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

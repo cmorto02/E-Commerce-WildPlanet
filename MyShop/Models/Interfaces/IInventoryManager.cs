@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace MyShop.Interfaces
 {
-    interface IInventoryManager
+    public interface IInventoryManager
     {
-        void CreateProduct(Product product);
+        /// <summary>
+        /// gets all products to list on the shop page
+        /// </summary>
+        /// <returns>List of all products</returns>
+        Task<List<Product>> GetALLProducts();
 
-        void GetALLProducts();
-
-        void GetByID(int id);
-
-        void Update(int id);
-
-        void Delete(int id);
     }
 }
