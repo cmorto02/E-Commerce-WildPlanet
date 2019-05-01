@@ -1,0 +1,53 @@
+﻿@model MyShop.Models.Product
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_layout";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageAnimal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ImageAnimal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageStuffedAnimal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ImageStuffedAnimal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AmmountLeft)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AmmountLeft)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

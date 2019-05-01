@@ -52,6 +52,12 @@ namespace MyShop.Controllers
                 };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
 
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError(string.Empty, "I'm sorry, something went wrong. Please try again.");
+                }
+
+
                 if (result.Succeeded)
                 {
                     Claim nameClaim = new Claim("FullName", $"{user.FirstName} { user.LastName} ");
@@ -64,9 +70,10 @@ namespace MyShop.Controllers
 
                     List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim};
                     await _userManager.AddClaimsAsync(user, claims);
-                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
+
                 }
             }
             return View(rvm);

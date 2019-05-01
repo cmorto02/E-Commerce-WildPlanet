@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "_layout";
 }
-
+<title>Shop</title>
 <h1>Shop</h1>
 
 <table class="table">
@@ -52,6 +52,9 @@
                 </td>
                 <td>
                     <img src="@Html.DisplayFor(modelItem => item.ImageAnimal)" alt="img" style="width:300px" />
+                </td>
+                <td>
+                    <button><a asp-action="Details" asp-route-id="@item.ID">Details</a> </button>
                 </td>
 
             </tr>
