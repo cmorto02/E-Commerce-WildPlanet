@@ -10,10 +10,18 @@ namespace MyShop.Controllers
     [Authorize(Policy = "LovesAnimals")]
     public class LovesAnimalsController : Controller
     {
+        /// <summary>
+        /// landing page view
+        /// </summary>
+        /// <returns>Default view of the exclusive page</returns>
         public IActionResult Index()
         {
             return View();
         }
+        /// <summary>
+        /// authorizes access to the view
+        /// </summary>
+        /// <returns>if successful returns a view</returns>
         [Authorize]
         public IActionResult LovesAnimals()
         {

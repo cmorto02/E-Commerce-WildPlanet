@@ -8,6 +8,9 @@ namespace MyShop.Models.Handlers
 {
     public class LovesAnimals : IAuthorizationRequirement
     {
+        /// <summary>
+        /// default value set for non-met requirement
+        /// </summary>
         public string laRequirement = "true";
     }
 

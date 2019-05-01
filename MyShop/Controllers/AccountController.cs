@@ -22,13 +22,20 @@ namespace MyShop.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        /// <summary>
+        /// returns the view of register
+        /// </summary>
+        /// <returns>default view</returns>
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-
+        /// <summary>
+        /// takes in register view model and grabs claims from registration
+        /// </summary>
+        /// <param name="rvm">Register view model</param>
+        /// <returns>returns to a new view if succesful will go home if not successful then it will refresh and return the rvm</returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
@@ -70,12 +77,20 @@ namespace MyShop.Controllers
             return View(rvm);
 
         }
+        /// <summary>
+        /// Default view for login
+        /// </summary>
+        /// <returns>default view for login</returns>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-
+        /// <summary>
+        /// sign's in the user using the information given through the form
+        /// </summary>
+        /// <param name="lvm">login view model logic and form</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
