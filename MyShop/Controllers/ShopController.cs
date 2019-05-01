@@ -30,5 +30,20 @@ namespace MyShop.Controllers
 
             return View(Inventory);
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            if (id < 1)
+            {
+                return NotFound();
+            }
+            var product = await _context.GetProduct(id);
+
+            if(product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
     }
 }
