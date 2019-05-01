@@ -21,11 +21,20 @@ namespace MyShop.Models.Services
             return await _context.Product.ToListAsync();
         }
 
-        public void GetByID(int id)
+        public async Task<Product> GetProduct(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var product =  await _context.Product.FirstOrDefaultAsync(x => x.ID == id);
+               
+                                           
+                return product;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
-
-  
     }
 }

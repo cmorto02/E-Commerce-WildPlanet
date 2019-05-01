@@ -14,5 +14,8 @@ namespace MyShop.Interfaces
         /// <returns>List of all products</returns>
         Task<List<Product>> GetALLProducts();
 
+        Task<Product> GetProduct(int id);
+        
+
     }
 }
