@@ -10,7 +10,7 @@ using MyShop.data;
 namespace MyShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190501025519_users")]
+    [Migration("20190501034752_users")]
     partial class users
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
