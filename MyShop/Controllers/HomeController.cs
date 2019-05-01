@@ -8,6 +8,10 @@ namespace MyShop.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// home page
+        /// </summary>
+        /// <returns>default landing home page view</returns>
         public IActionResult Index()
         {
             return View();

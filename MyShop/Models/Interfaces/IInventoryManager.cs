@@ -8,7 +8,10 @@ namespace MyShop.Interfaces
 {
     public interface IInventoryManager
     {
-
+        /// <summary>
+        /// gets all products to list on the shop page
+        /// </summary>
+        /// <returns>List of all products</returns>
         Task<List<Product>> GetALLProducts();
 
     }
