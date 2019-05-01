@@ -1,29 +1,22 @@
-# ***Project README Example***
----------------------------------
----------------------------------
-
-# Project A.M.A.N.D.A.
+# ***Project Wild Planet***
 ---------------------------------
 ## We are deployed on Azure!
 
-[project url here]
+https://wildplanet.azurewebsites.net/
 
 ---------------------------------
 ## Web Application
-***[Explain your app, should be at least a paragraph. What does it do? Why should I use? Sell your product!]***
+
+Our web application connects users to active wildlife conservation efforts through donation and the right to 
+name individual members of critically endangered species that are among the subjects in ongoing conservation research. 
+When you donate to a specific species on our webapp anything donated goes to active conservation efforts. Some of the 
+efforts we support are conservation research efforts, anti-poaching efforts, and land and habitat management and rehabilitation. 
+
+When you purchase the rights to name an animal through donation on our site, you will receive information about the species and the specific 
+animal you are naming as well as a picture of the exact animal you are supporting, conservation efforts and a plush in that animals image.
 
 The web application consists of a frontend written in Razor views, HTML, CSS,
 Bootstrap, Popper, and jQuery. The backend was written in C# using ASP.NET Core 2, Entity Framework Core, and the MVC framework.
-
-An interface is provided to create new blog
-posts, view existing blog posts, edit existing blog posts, delete existing
-blog posts, and search by both keywords and usernames. All blog posts can be
-enriched using Azure Language Services (part of Microsoft's Cognitive Services
-suite), Bing Image API, and Parallel Dots (for automated tagging of posts via
-key phrases detected within the post's body). Image enrichments can be added
-based on the overall sentiment score (a range 0.0 - 1.0 related to the mood
-of the post) and key phrases / keywords detected in the posts. Optionally, users
-can choose to opt-out of these features for privacy or data collection concerns.
 
 ---------------------------------
 
@@ -43,8 +36,8 @@ Microsoft Visual Studio Community 2017 (Version 15.5.7)
 
 ## Recent Updates
 
-#### V 1.4
-*Added OAuth for MySpace* - 23 Jan 2003
+#### V 1.0
+*Site launch 30 April 2019
 
 ---------------------------
 
@@ -128,20 +121,14 @@ Unit testing is included in the AmandaFE/FrontendTesting project using the xUnit
 ---------------------------
 
 ## Change Log
-***[The change log will list any changes made to the code base. This includes any changes from TA/Instructor feedback]***
-1.4: *Added OAuth for MySpace* - 23 Jan 2003
-1.3: *Changed email handler to Alta Vista, fixed issue with styling on Netscape Navigator browser.* - 21 Dec 1999
-1.2: *Fixed bug where pages would not load due to temp data* - 16 Jun 1998
+1.0: *Site launch 30 April 2019
 1.1: *Added ability for user to change photos on a post* - 12 May 1998
 
 ------------------------------
 
 ## Authors
-Albus Dumbbledore
-Igor Karkaroff
-Minerva McGonagall
-Leta Lestrange
-Gellert Grindelwald
+Tanner Percival
+Chris Morton
 
 ------------------------------
 
