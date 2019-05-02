@@ -75,6 +75,8 @@ namespace MyShop.Controllers
                     return RedirectToAction("Index", "Home");
 
                 }
+                var tempUserID = Convert.ToInt32(user.Id);
+                Basket basket = new Basket(tempUserID);
             }
             return View(rvm);
 
