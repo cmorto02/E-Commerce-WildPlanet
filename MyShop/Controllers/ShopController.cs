@@ -26,8 +26,6 @@ namespace MyShop.Controllers
         {
             var Inventory = await _context.GetALLProducts();
          
-
-
             return View(Inventory);
         }
 
