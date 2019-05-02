@@ -129,5 +129,7 @@ namespace MyShop.data
                 });
         }
         public DbSet<Product> Product { get; set; }
+        public DbSet<Basket> Basket { get; set; }
+        public DbSet<BasketItems> BasketItems { get; set; }
     }
 }
