@@ -7,14 +7,14 @@ namespace MyShop.Models
 {
     public class Basket
     {
-        public Basket(int userID)
+        public Basket(string userName)
         {
-            UserID = userID.ToString();
+            UserName = userName;
         }
         public int ID { get; set; }
         public int TotalItems { get; set; }
         public double TotalPrice { get; set; }
-        public string UserID { get; set; }
+        public string UserName { get; set; }
         public List<BasketItems> BasketList { get; set; }
     }
 }
