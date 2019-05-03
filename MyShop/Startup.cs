@@ -14,6 +14,7 @@ using MyShop.data;
 using MyShop.Interfaces;
 using MyShop.Models;
 using MyShop.Models.Handlers;
+using MyShop.Models.Interfaces;
 using MyShop.Models.Services;
 
 namespace MyShop
@@ -50,13 +51,13 @@ namespace MyShop
                 .AddDefaultTokenProviders();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("UserDataConnection")));
+           options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault")));
 
 
             services.AddDbContext<MyShopDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IInventoryManager, InventoryService>();
-
+            services.AddScoped<IBasketManager, BasketService>();
 
             services.AddScoped<IAuthorizationHandler, LovesAnimalsHandler>();
 
