@@ -8,6 +8,9 @@
 
 <div>
     <h4>Product</h4>
+    <div>
+        <button><a asp-action="Index">Add to cart</a></button>
+    </div>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -23,16 +26,17 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
+
             @Html.DisplayNameFor(model => model.ImageAnimal)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageAnimal)
+            <img src="@Html.DisplayFor(modelItem => modelItem.ImageAnimal)" alt="img" style="width:300px" />
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageStuffedAnimal)
+            @Html.DisplayNameFor(model => model.ImageStuffedAnimal);
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageStuffedAnimal)
+            <img src="@Html.DisplayFor(modelItem => modelItem.ImageStuffedAnimal)" alt="img" style="width:300px" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AmmountLeft)
@@ -49,6 +53,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Add to cart</a>
+   
     <a asp-action="Index">Back to List</a>
 </div>
