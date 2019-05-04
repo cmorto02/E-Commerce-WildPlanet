@@ -1,0 +1,56 @@
+﻿@model  MyShop.Models.Basket
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BasketList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Product.ImageStuffedAnimal)" alt="img" style="width:300px" />
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.AmmountLeft)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Product.Description)
+
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Product.ImageAnimal)" alt="img" style="width:300px" />
+                </td>
+                <td>
+                    <button><a asp-action="Details" asp-route-id="@item.ID">Details</a> </button>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
