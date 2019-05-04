@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MyShop.Models.Services
 {
@@ -35,6 +36,21 @@ namespace MyShop.Models.Services
             }
         }
 
+        public bool BasketExists(int id)
+        {
+            try
+            {
+                return _context.BasketItems.Any(e => e.ID == id);
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<BasketItems>> GetAllItems()
         {
             try
@@ -45,6 +61,22 @@ namespace MyShop.Models.Services
             {
                 Console.WriteLine(e);
                 return null;
+            }
+        }
+
+        public async Task UpdateBasketItem(int id, [Bind("ID,BasketID,ProductID,Product,Quantity,LineItemAmount")]BasketItems basketItems)
+        { 
+            try
+            {
+                _context.Update(basketItems);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+
             }
         }
 
