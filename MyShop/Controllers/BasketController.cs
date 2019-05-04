@@ -31,11 +31,11 @@ namespace MyShop.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> Create(int productID, string name)
+        public async Task<IActionResult> Create(int productID, string username)
         {
             if (ModelState.IsValid)
             {
-            await _context.AddBasketItem(productID, name);
+            await _context.AddBasketItem(productID, username);
                 return RedirectToAction(nameof(Index));
             }
             return View();

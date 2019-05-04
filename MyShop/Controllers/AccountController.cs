@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyShop.data;
 using MyShop.Models;
 using MyShop.Models.ViewModels;
 using System;
@@ -15,10 +16,11 @@ namespace MyShop.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private MyShopDbContext _context;
 
-
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, MyShopDbContext context)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -77,6 +79,9 @@ namespace MyShop.Controllers
                 }
              
                 Basket basket = new Basket(user.UserName);
+                _context.Basket.Add(basket);
+               await  _context.SaveChangesAsync();
+                
             }
             return View(rvm);
 

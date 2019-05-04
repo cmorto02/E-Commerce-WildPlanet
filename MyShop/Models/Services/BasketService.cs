@@ -35,11 +35,14 @@ namespace MyShop.Models.Services
 
                 BasketItems basketItem = new BasketItems()
                 {
+                    
                     BasketID = basket.ID,
                     ProductID = product.ID,
                     Product = product,
                     Quantity = 1,
                     LineItemAmount = product.Price
+
+                   
                 };
                 basket.BasketList.Add(basketItem);
                 _context.Basket.Add(basket);
