@@ -16,18 +16,31 @@ namespace MyShop.Models.Services
 
     {
         private MyShopDbContext _context;
+        private ApplicationDbContext _appcontext;
 
-        public BasketService(MyShopDbContext context)
+        public BasketService(MyShopDbContext context, ApplicationDbContext appcontext)
         {
             _context = context;
+            _appcontext = appcontext;
         }
-        public async Task AddBasketItem(int productID)
+        public async Task AddBasketItem(int productID, string username)
         {
             try
             {
-                BasketItems basketitem = new BasketItems();
                 Basket basket = await _context.Basket
-                                         .FirstOrDefaultAsync(x => x.ID == basketID);
+                                         .FirstOrDefaultAsync(x => x.UserName == username);
+
+                Product product = await _context.Product
+                                         .FirstOrDefaultAsync(x => x.ID == productID);
+
+                BasketItems basketItem = new BasketItems()
+                {
+                    BasketID = basket.ID,
+                    ProductID = product.ID,
+                    Product = product,
+                    Quantity = 1,
+                    LineItemAmount = product.Price
+                };
                 basket.BasketList.Add(basketItem);
                 _context.Basket.Add(basket);
                 await _context.SaveChangesAsync();

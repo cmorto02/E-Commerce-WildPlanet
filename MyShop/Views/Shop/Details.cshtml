@@ -49,16 +49,16 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
-    <form asp-controller="Basket" asp-action="AddBasketItem">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
- 
+
+
+    <form action="create" method="post">
+        
+            <input type="hidden" name="productID" value="@Model.ID" />
+
+            <input type="hidden" name="username" value="@User.Identity.Name" />
+
         <div class="form-group">
-            <label asp-for="ID" class="control-label"></label>
-            <input asp-for="ID" class="form-control" />
-            <span asp-validation-for="ID" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" value="Add to cart!" class="btn btn-primary" />
         </div>
     </form>
 </div>

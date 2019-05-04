@@ -7,10 +7,6 @@ namespace MyShop.Models
 {
     public class BasketItems
     {
-        public BasketItems(int productID, )
-        {
-
-        }
         public int ID { get; set; }
         public int BasketID { get; set; }
         public int ProductID { get; set; }
