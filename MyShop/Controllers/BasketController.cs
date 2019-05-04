@@ -30,5 +30,10 @@ namespace MyShop.Controllers
             }
 
         }
+        public async Task Create(int productID)
+        {
+            _context.AddBasketItem(productID);
+
+        }
     }
 }

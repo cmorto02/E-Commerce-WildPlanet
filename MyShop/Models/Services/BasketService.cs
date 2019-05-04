@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace MyShop.Models.Services
 {
@@ -20,10 +21,11 @@ namespace MyShop.Models.Services
         {
             _context = context;
         }
-        public async Task AddBasketItem(int basketID, BasketItems basketItem)
+        public async Task AddBasketItem(int productID)
         {
             try
             {
+                BasketItems basketitem = new BasketItems();
                 Basket basket = await _context.Basket
                                          .FirstOrDefaultAsync(x => x.ID == basketID);
                 basket.BasketList.Add(basketItem);

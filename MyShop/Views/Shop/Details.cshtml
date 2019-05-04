@@ -9,8 +9,6 @@
 <div>
     <h4>Product</h4>
 
-    <div> <a href="/Basket">Add To Cart</a></div>
-
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -51,8 +49,20 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
+    <form asp-controller="Basket" asp-action="AddBasketItem">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ 
+        <div class="form-group">
+            <label asp-for="ID" class="control-label"></label>
+            <input asp-for="ID" class="form-control" />
+            <span asp-validation-for="ID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 <div>
-   
+
     <a asp-action="Index">Back to List</a>
 </div>
