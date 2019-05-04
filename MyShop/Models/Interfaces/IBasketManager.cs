@@ -7,7 +7,7 @@ namespace MyShop.Models.Interfaces
 {
     public interface IBasketManager
     {
-        Task AddBasketItem(int productID);
+        Task AddBasketItem(int productID, string username);
 
 
         Task<BasketItems> RemoveBasketItem(int basketID);

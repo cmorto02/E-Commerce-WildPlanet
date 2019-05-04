@@ -30,10 +30,16 @@ namespace MyShop.Controllers
             }
 
         }
-        public async Task Create(int productID)
+        [HttpPost]
+        public async Task<IActionResult> Create(int productID, string name)
         {
-
-            _context.AddBasketItem(productID);
+            if (ModelState.IsValid)
+            {
+            await _context.AddBasketItem(productID, name);
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+            
 
         }
     }
