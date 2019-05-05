@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MyShop.Models.ViewModels.ComponentViewModel>
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Default</title>
+</head>
+<body>
+    <section style="border: 1px solid black">
+        Basket:
+        @foreach (var item in Model)
+        {
+            <article>
+                <h3>@item.Name</h3>
+                <p>@item.Price</p>
+            </article>
+        }
+    </section>
+</body>
+</html>

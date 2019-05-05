@@ -27,30 +27,24 @@
     <tbody>
         @foreach (var item in Model.BasketList)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Product.ImageStuffedAnimal)" alt="img" style="width:300px" />
+          
+        <tr>
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.AmmountLeft)
-                </td>
-                <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.Product.Price
+            </td>
+            <td>
+                <a asp-action="DeleteBasketItem" asp-route-id="@item.ID">Remove</a>
+            </td>
 
-                    @Html.DisplayFor(modelItem => item.Product.Description)
 
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Product.ImageAnimal)" alt="img" style="width:300px" />
-                </td>
-                <td>
-                    <button><a asp-action="Details" asp-route-id="@item.ID">Details</a> </button>
-                </td>
-
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

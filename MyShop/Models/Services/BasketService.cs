@@ -23,6 +23,7 @@ namespace MyShop.Models.Services
             _context = context;
             _appcontext = appcontext;
         }
+        [HttpPost]
         public async Task AddBasketItem(int productID, string username)
         {
             try
@@ -39,10 +40,8 @@ namespace MyShop.Models.Services
                     ProductID = product.ID,
                     Product = product,
                     Quantity = 1,
-                    LineItemAmount = product.Price
                 };
-                basket.BasketList.Add(basketItem);
-                _context.Basket.Add(basket);
+                _context.BasketItems.Add(basketItem);
                 await _context.SaveChangesAsync();
             }
             catch(Exception e)
@@ -70,6 +69,7 @@ namespace MyShop.Models.Services
         {
             try
             {
+
                 return await _context.BasketItems.ToListAsync();
             }
             catch(Exception e)
@@ -116,11 +116,29 @@ namespace MyShop.Models.Services
                 var item = await _context.BasketItems.FindAsync(basketID);
                 _context.BasketItems.Remove(item);
                 await _context.SaveChangesAsync();
+
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public async Task CreateBasket(Basket basket)
+        {
+            _context.Add(basket);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Basket> GetBasket(string userName)
+        {
+            var basket = _context.Basket.FirstOrDefault(x => x.UserName == userName);
+            basket.BasketList = await _context.BasketItems.Where(b => b.BasketID == basket.ID).ToListAsync();
+            foreach (var item in basket.BasketList)
+            {
+                item.Product = await _context.Product.FirstOrDefaultAsync(e => e.ID == item.ProductID);
+            }
+            return basket;
         }
     }
 }

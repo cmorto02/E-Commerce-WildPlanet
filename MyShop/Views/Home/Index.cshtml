@@ -12,6 +12,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
+    @await Component.InvokeAsync("BasketComponent");
 }
 @if (!SignInManager.IsSignedIn(User))
 {
