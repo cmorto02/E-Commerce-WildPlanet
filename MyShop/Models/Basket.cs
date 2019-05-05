@@ -7,10 +7,6 @@ namespace MyShop.Models
 {
     public class Basket
     {
-        public Basket(string userName)
-        {
-            UserName = userName;
-        }
         public int ID { get; set; }
         public int TotalItems { get; set; }
         public double TotalPrice { get; set; }

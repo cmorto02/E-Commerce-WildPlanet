@@ -9,15 +9,19 @@ namespace MyShop.Models.Interfaces
     {
         Task AddBasketItem(int productID, string username);
 
-
         Task<BasketItems> RemoveBasketItem(int basketID);
-        Task RemoveBasketItemFR(int basketID);
 
+        Task RemoveBasketItemFR(int basketID);
 
         Task<IEnumerable<BasketItems>> GetAllItems();
 
         bool BasketExists(int id);
+
         Task UpdateBasketItem(int id, BasketItems basketItems);
+
+        Task CreateBasket(Basket basket);
+
+        Task<Basket> GetBasket(string userName);
 
     }
 }

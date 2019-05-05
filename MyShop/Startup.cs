@@ -58,6 +58,7 @@ namespace MyShop
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IInventoryManager, InventoryService>();
             services.AddScoped<IBasketManager, BasketService>();
+            services.AddScoped<IBasketComponentManager, BasketComponentService>();
 
             services.AddScoped<IAuthorizationHandler, LovesAnimalsHandler>();
 
