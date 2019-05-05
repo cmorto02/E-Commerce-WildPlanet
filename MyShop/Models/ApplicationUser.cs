@@ -17,4 +17,10 @@ namespace MyShop.Models
         public DateTime Birthday { get; set; }
         public string LoveAnimals { get; set; } = "false";
     }
+
+    public static class ApplicationRoles
+    {
+        public const string Member = "Member";
+        public const string Admin = "Admin";
+    }
 }
