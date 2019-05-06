@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyShop.data;
 
-namespace MyShop.Migrations
+namespace MyShop.Migrations.MyShopDb
 {
     [DbContext(typeof(MyShopDbContext))]
-    [Migration("20190504200515_userdata")]
-    partial class userdata
+    [Migration("20190506144330_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

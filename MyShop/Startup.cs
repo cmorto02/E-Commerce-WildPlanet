@@ -59,6 +59,7 @@ namespace MyShop
             services.AddScoped<IInventoryManager, InventoryService>();
             services.AddScoped<IBasketManager, BasketService>();
             services.AddScoped<IBasketComponentManager, BasketComponentService>();
+            services.AddScoped<IBasketItemManager, BasketItemService>();
 
             services.AddScoped<IAuthorizationHandler, LovesAnimalsHandler>();
 
