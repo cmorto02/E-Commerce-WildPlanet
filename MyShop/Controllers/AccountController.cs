@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MyShop.data;
 using MyShop.Models;
+using MyShop.Models.Interfaces;
 using MyShop.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,16 @@ namespace MyShop.Controllers
 
     public class AccountController : Controller
     {
+        private readonly IBasketManager _context;
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
 
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IBasketManager context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
         /// <summary>
         /// returns the view of register
@@ -72,11 +76,18 @@ namespace MyShop.Controllers
                     await _userManager.AddClaimsAsync(user, claims);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
+                    Basket basket = new Basket()
+                    {
+                        TotalItems = 0,
+                        TotalPrice = 0,
+                        UserName = user.UserName,
+                        BasketList = null
+                    };
+                    await _context.CreateBasket(basket);
+
                     return RedirectToAction("Index", "Home");
 
-                }
-             
-                Basket basket = new Basket(user.UserName);
+                }             
             }
             return View(rvm);
 

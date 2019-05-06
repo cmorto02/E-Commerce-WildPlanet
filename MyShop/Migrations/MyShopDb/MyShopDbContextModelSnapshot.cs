@@ -18,6 +18,46 @@ namespace MyShop.Migrations.MyShopDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MyShop.Models.Basket", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("TotalItems");
+
+                    b.Property<double>("TotalPrice");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Basket");
+                });
+
+            modelBuilder.Entity("MyShop.Models.BasketItems", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BasketID");
+
+                    b.Property<double>("LineItemAmount");
+
+                    b.Property<int>("ProductID");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BasketID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("BasketItems");
+                });
+
             modelBuilder.Entity("MyShop.Models.Product", b =>
                 {
                     b.Property<int>("ID")
@@ -153,6 +193,19 @@ namespace MyShop.Migrations.MyShopDb
                             Price = 2400.0,
                             Summary = "Temp."
                         });
+                });
+
+            modelBuilder.Entity("MyShop.Models.BasketItems", b =>
+                {
+                    b.HasOne("MyShop.Models.Basket")
+                        .WithMany("BasketList")
+                        .HasForeignKey("BasketID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MyShop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

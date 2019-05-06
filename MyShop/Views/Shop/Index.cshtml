@@ -31,6 +31,7 @@
         </tr>
     </thead>
     <tbody>
+
         @foreach (var item in Model)
         {
             <tr>
@@ -39,7 +40,6 @@
                 </td>
                 <td>
                     <img src="@Html.DisplayFor(modelItem => item.ImageStuffedAnimal)" alt="img" style="width:300px" />
-                    <a href="#">Purchase</a>
 
                 </td>
                 <td>
@@ -54,7 +54,7 @@
                     <img src="@Html.DisplayFor(modelItem => item.ImageAnimal)" alt="img" style="width:300px" />
                 </td>
                 <td>
-                    <button><a asp-action="Details" asp-route-id="@item.ID">Details</a> </button>
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
                 </td>
 
             </tr>

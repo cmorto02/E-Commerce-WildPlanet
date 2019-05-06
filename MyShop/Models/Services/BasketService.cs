@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace MyShop.Models.Services
 {
@@ -14,19 +16,32 @@ namespace MyShop.Models.Services
 
     {
         private MyShopDbContext _context;
+        private ApplicationDbContext _appcontext;
 
-        public BasketService(MyShopDbContext context)
+        public BasketService(MyShopDbContext context, ApplicationDbContext appcontext)
         {
             _context = context;
+            _appcontext = appcontext;
         }
-        public async Task AddBasketItem(int basketID, BasketItems basketItem)
+        [HttpPost]
+        public async Task AddBasketItem(int productID, string username)
         {
             try
             {
                 Basket basket = await _context.Basket
-                                         .FirstOrDefaultAsync(x => x.ID == basketID);
-                basket.BasketList.Add(basketItem);
-                _context.Basket.Add(basket);
+                                         .FirstOrDefaultAsync(x => x.UserName == username);
+
+                Product product = await _context.Product
+                                         .FirstOrDefaultAsync(x => x.ID == productID);
+
+                BasketItems basketItem = new BasketItems()
+                {
+                    BasketID = basket.ID,
+                    ProductID = product.ID,
+                    Product = product,
+                    Quantity = 1,
+                };
+                _context.BasketItems.Add(basketItem);
                 await _context.SaveChangesAsync();
             }
             catch(Exception e)
@@ -35,16 +50,48 @@ namespace MyShop.Models.Services
             }
         }
 
+        public bool BasketExists(int id)
+        {
+            try
+            {
+                return _context.BasketItems.Any(e => e.ID == id);
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<BasketItems>> GetAllItems()
         {
             try
             {
+
                 return await _context.BasketItems.ToListAsync();
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
                 return null;
+            }
+        }
+
+        public async Task UpdateBasketItem(int id, [Bind("ID,BasketID,ProductID,Product,Quantity,LineItemAmount")]BasketItems basketItems)
+        { 
+            try
+            {
+                _context.Update(basketItems);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+
             }
         }
 
@@ -69,11 +116,29 @@ namespace MyShop.Models.Services
                 var item = await _context.BasketItems.FindAsync(basketID);
                 _context.BasketItems.Remove(item);
                 await _context.SaveChangesAsync();
+
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public async Task CreateBasket(Basket basket)
+        {
+            _context.Add(basket);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Basket> GetBasket(string userName)
+        {
+            var basket = _context.Basket.FirstOrDefault(x => x.UserName == userName);
+            basket.BasketList = await _context.BasketItems.Where(b => b.BasketID == basket.ID).ToListAsync();
+            foreach (var item in basket.BasketList)
+            {
+                item.Product = await _context.Product.FirstOrDefaultAsync(e => e.ID == item.ProductID);
+            }
+            return basket;
         }
     }
 }

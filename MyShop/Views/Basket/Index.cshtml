@@ -1,0 +1,52 @@
+﻿@model  MyShop.Models.Basket
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BasketList)
+        {
+          
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.Product.Price
+            </td>
+            <td>
+                <a asp-action="DeleteBasketItem" asp-route-id="@item.ID">Remove</a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

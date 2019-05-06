@@ -8,6 +8,7 @@
 
 <div>
     <h4>Product</h4>
+
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -23,16 +24,17 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
+
             @Html.DisplayNameFor(model => model.ImageAnimal)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageAnimal)
+            <img src="@Html.DisplayFor(modelItem => modelItem.ImageAnimal)" alt="img" style="width:300px" />
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageStuffedAnimal)
+            @Html.DisplayNameFor(model => model.ImageStuffedAnimal);
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImageStuffedAnimal)
+            <img src="@Html.DisplayFor(modelItem => modelItem.ImageStuffedAnimal)" alt="img" style="width:300px" />
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.AmmountLeft)
@@ -47,7 +49,20 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
+
+
+    <form asp-controller="Basket" asp-action="Create" method="post">
+        
+            <input type="hidden" name="productID" value="@Model.ID" />
+
+            <input type="hidden" name="username" value="@User.Identity.Name" />
+
+        <div class="form-group">
+            <input type="submit" value="Add to cart!" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 <div>
+
     <a asp-action="Index">Back to List</a>
 </div>

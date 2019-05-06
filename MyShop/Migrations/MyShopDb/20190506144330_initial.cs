@@ -3,10 +3,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyShop.Migrations.MyShopDb
 {
-    public partial class seed : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Basket",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TotalItems = table.Column<int>(nullable: false),
+                    TotalPrice = table.Column<double>(nullable: false),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Basket", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Product",
                 columns: table => new
@@ -26,6 +41,34 @@ namespace MyShop.Migrations.MyShopDb
                     table.PrimaryKey("PK_Product", x => x.ID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BasketItems",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BasketID = table.Column<int>(nullable: false),
+                    ProductID = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    LineItemAmount = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasketItems", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_BasketItems_Basket_BasketID",
+                        column: x => x.BasketID,
+                        principalTable: "Basket",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BasketItems_Product_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Product",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "ID", "AmmountLeft", "Description", "ImageAnimal", "ImageStuffedAnimal", "Name", "Price", "Summary" },
@@ -42,10 +85,26 @@ namespace MyShop.Migrations.MyShopDb
                     { 9, 43, "Name a Polar Bear and receive a plush.", "https://media.treehugger.com/assets/images/2018/10/polar-bear-kid.jpg.860x0_q70_crop-scale.jpg", "https://images-na.ssl-images-amazon.com/images/I/611900XLxiL._SX425_.jpg", "Polar Bear", 2400.0, "Temp." },
                     { 10, 43, "Name a Giant Panda and receive a plush.", "https://www.sciencenews.org/sites/default/files/2019/01/main/articles/013019_JR_panda-diet_feat.jpg", "https://images-na.ssl-images-amazon.com/images/I/71rbxOLyUSL._SX425_.jpg", "Giant Panda", 2400.0, "Temp." }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BasketItems_BasketID",
+                table: "BasketItems",
+                column: "BasketID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BasketItems_ProductID",
+                table: "BasketItems",
+                column: "ProductID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "BasketItems");
+
+            migrationBuilder.DropTable(
+                name: "Basket");
+
             migrationBuilder.DropTable(
                 name: "Product");
         }
