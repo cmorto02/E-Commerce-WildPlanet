@@ -42,7 +42,9 @@
             <td>
                 <a asp-action="DeleteBasketItem" asp-route-id="@item.ID">Remove</a>
             </td>
-
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+            </td>
 
         </tr>
         }

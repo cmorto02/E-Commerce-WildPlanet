@@ -1,6 +1,7 @@
 ﻿@model MyShop.Models.BasketItems
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_Layout";
 }
 
 <h1>Edit</h1>
@@ -8,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-controller="BasketItems" asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
@@ -28,4 +29,7 @@
             </div>
         </form>
     </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>
