@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using MyShop.Models;
 
 namespace MyShop
 {
@@ -14,6 +16,22 @@ namespace MyShop
     {
         public static void Main(string[] args)
         {
+            var host = CreateWebHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    StartupDBInitializer.SeedData(services);
+                }
+                catch (Exception w)
+                {
+                    //Use _Ilogger to log data
+                }
+                host.Run();
+            }
             CreateWebHostBuilder(args).Build().Run();
         }
 
