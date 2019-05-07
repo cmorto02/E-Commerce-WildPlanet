@@ -36,7 +36,7 @@ namespace MyShop.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] BasketItems BasketItem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Quantity,Price")] BasketItems BasketItem)
         {
             if (id != BasketItem.ID)
             {
@@ -61,7 +61,7 @@ namespace MyShop.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Basket");
             }
             return View(BasketItem);
         }
