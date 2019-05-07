@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyShop.data;
 using MyShop.Models.Interfaces;
 using System;
@@ -35,7 +36,7 @@ namespace MyShop.Models.Services
                 return null;
             }
         }
-        public async Task<IEnumerable<BasketItems>> GetAmenities()
+        public async Task<IEnumerable<BasketItems>> GetBasketItems()
         {
             try
             {
@@ -49,11 +50,11 @@ namespace MyShop.Models.Services
                 return null;
             }
         }
-        public async Task UpdateBasketItem(int id, BasketItems BI)
+        public async Task UpdateBasketItem(int id, [Bind("ID,Name,Quantity,Price")]BasketItems BI)
         {
             try
             {
-                _context.Update(BI);
+                _context.Update(BI) ;
                 await _context.SaveChangesAsync();
 
             }
