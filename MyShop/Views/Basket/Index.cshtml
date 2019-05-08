@@ -1,7 +1,6 @@
 ﻿@model  MyShop.Models.Basket
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
 }
 
 <h1>Index</h1>
@@ -35,16 +34,16 @@
                 @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
             <td>
-                @item.Quantity
+                $@item.LineItemAmount
             </td>
             <td>
-                @item.Product.Price
+                <form asp-action="Edit" method="post" asp-route-id="@item.ID">
+                <input type="number" name="quantity" value="@item.Quantity" />
+                <button type="submit">Update</button>
+                </form>
             </td>
             <td>
                 <a asp-action="DeleteBasketItem" asp-route-id="@item.ID">Remove</a>
-            </td>
-            <td>
-                <a asp-controller="BasketItems" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
             </td>
 
         </tr>

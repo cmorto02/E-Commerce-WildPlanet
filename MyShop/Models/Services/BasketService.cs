@@ -140,5 +140,24 @@ namespace MyShop.Models.Services
             }
             return basket;
         }
+        public async Task<BasketItems> GetBasketItem(int id)
+        {
+            try
+            {
+                var basketItem = await _context.BasketItems.FindAsync(id);
+                if (basketItem == null)
+                {
+                    return null;
+                }
+
+                return basketItem;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                return null;
+            }
+        }
     }
 }
