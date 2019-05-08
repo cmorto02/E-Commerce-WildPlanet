@@ -23,5 +23,7 @@ namespace MyShop.Models.Interfaces
 
         Task<Basket> GetBasket(string userName);
 
+        Task<BasketItems> GetBasketItem(int id);
+
     }
 }

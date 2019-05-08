@@ -34,38 +34,5 @@ namespace MyShop.Controllers
             }
             return View(basketItem);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] BasketItems BasketItem)
-        {
-            if (id != BasketItem.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _context.UpdateBasketItem(id, BasketItem);
-
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_context.BasketItemsExists(BasketItem.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(BasketItem);
-        }
-
-
     }
 }
