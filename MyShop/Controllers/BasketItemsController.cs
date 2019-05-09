@@ -18,21 +18,10 @@ namespace MyShop.Controllers
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             return View();
-        }
-        // GET: BasketItems/Edit/5
-        public async Task<IActionResult> Edit(int id)
-        {
-
-
-            var basketItem = await _context.GetBasketItem(id);
-            if (basketItem == null)
-            {
-                return NotFound();
-            }
-            return View(basketItem);
         }
     }
 }

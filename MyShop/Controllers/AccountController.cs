@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using MyShop.data;
 using MyShop.Models;
@@ -18,13 +19,14 @@ namespace MyShop.Controllers
         private readonly IBasketManager _context;
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private IEmailSender _emailSender;
 
-
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IBasketManager context)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IBasketManager context, IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _emailSender = emailSender;
         }
         /// <summary>
         /// returns the view of register
@@ -73,7 +75,21 @@ namespace MyShop.Controllers
                     Claim loveAnimalsClaim = new Claim("LovesAnimals", user.LoveAnimals);
 
                     List<Claim> claims = new List<Claim> { nameClaim, emailClaim, dateOfBirthClaim, loveAnimalsClaim};
+
                     await _userManager.AddClaimsAsync(user, claims);
+
+                    //give the user a role.
+                    if (rvm.Email.ToLower() == "amanda@codefellows.com")
+                    {
+
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+
+                    }
+
+                    await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
+
+                    await _emailSender.SendEmailAsync(rvm.Email, "Thank you for registering", "<p> Hello Welcome </p>");
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     Basket basket = new Basket()
@@ -120,9 +136,16 @@ namespace MyShop.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }
             return View(lvm);
-            {
+        }
 
-            }
+        /// <summary>
+        /// Logs the user out of our website
+        /// </summary>
+        /// <returns>Redirect to the home page</returns>
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
