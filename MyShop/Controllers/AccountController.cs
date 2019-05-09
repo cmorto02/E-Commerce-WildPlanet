@@ -136,9 +136,16 @@ namespace MyShop.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }
             return View(lvm);
-            {
+        }
 
-            }
+        /// <summary>
+        /// Logs the user out of our website
+        /// </summary>
+        /// <returns>Redirect to the home page</returns>
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

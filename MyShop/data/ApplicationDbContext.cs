@@ -16,19 +16,5 @@ namespace MyShop.data
         {
 
         }
-
-
-        //public DbSet<ApplicationUser> ApplicationUser { get; set; }
-
-        //public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
-
-        //public DbSet<IdentityUserRole<string>> IdentityUserRoles { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //modelBuilder.Entity<IdentityUserRole<Guid>>().HasKey(p => new { p.UserId, p.RoleId });
-        //modelBuilder.Entity<IdentityUserClaim<string>>().HasKey(p => new { p.Id });
-
-        //}
     }
 }

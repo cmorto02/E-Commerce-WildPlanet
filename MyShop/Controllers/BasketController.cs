@@ -25,6 +25,11 @@ namespace MyShop.Controllers
             _userManager = userManager;
             _productContext = productContext;
         }
+
+        /// <summary>
+        /// Index of the basket, shows items that are currently in the user's basket
+        /// </summary>
+        /// <returns>the basket view</returns>
         public async Task<IActionResult> Index()
         {
             try
@@ -40,6 +45,11 @@ namespace MyShop.Controllers
             }
 
         }
+        /// <summary>
+        /// Creates a basket item.
+        /// </summary>
+        /// <param name="productID">This is the product ID passed into the basket item as a parameter</param>
+        /// <returns>Iactionresult view</returns>
         public async Task<IActionResult> Create(int productID)
         {
             if (ModelState.IsValid)
@@ -53,12 +63,23 @@ namespace MyShop.Controllers
 
         }
 
+        /// <summary>
+        /// Removes a basket item from the users basket
+        /// </summary>
+        /// <param name="id">ID of the basket item in the DB</param>
+        /// <returns>Redirect to the index view</returns>
         public async Task<IActionResult> DeleteBasketItem(int id)
         {
             await _context.RemoveBasketItemFR(id);
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Edits the quantity and line item amount of the basket item
+        /// </summary>
+        /// <param name="id">Basket Item ID</param>
+        /// <param name="quantity">the amount of the item in the basket</param>
+        /// <returns>Redirect to the index</returns>
         [HttpPost]
         public async Task<IActionResult> Edit(int id, int quantity)
         {
