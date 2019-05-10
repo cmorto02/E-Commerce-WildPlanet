@@ -13,7 +13,7 @@ namespace MyShop.Models.Interfaces
 
         Task RemoveBasketItemFR(int basketID);
 
-        Task<IEnumerable<BasketItems>> GetAllItems();
+        IEnumerable<BasketItems> GetAllItems();
 
         bool BasketExists(int id);
 

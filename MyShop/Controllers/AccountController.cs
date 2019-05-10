@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MyShop.Controllers
@@ -87,6 +88,10 @@ namespace MyShop.Controllers
                     }
 
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
+
+              
+
+
 
                     await _emailSender.SendEmailAsync(rvm.Email, "Thank you for registering", "<p> Hello Welcome </p>");
 
