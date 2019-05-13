@@ -1,0 +1,50 @@
+﻿@model MyShop.Models.Basket
+@{
+    ViewData["Title"] = "Receipt";
+    Layout = "_Layout";
+}
+
+<h1>Checkout</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BasketList)
+        {
+
+        <tr>
+
+            <td>
+                Item: @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                Amount: @item.Quantity
+            </td>
+            <td>
+                Price: $@item.LineItemAmount
+            </td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>
+        Total: $@Model.TotalPrice
+<a asp-action="Receipt" asp-controller="Checkout">Checkout</a>
