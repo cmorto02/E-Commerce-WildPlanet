@@ -44,6 +44,7 @@ namespace MyShop.Models.Services
                     ProductID = product.ID,
                     Product = product,
                     Quantity = 1,
+                    LineItemAmount = product.Price
                 };
                 _context.BasketItems.Add(basketItem);
                 await _context.SaveChangesAsync();

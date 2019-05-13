@@ -63,6 +63,7 @@ namespace MyShop
             services.AddScoped<IBasketItemManager, BasketItemService>();
             services.AddScoped<IAuthorizationHandler, LovesAnimalsHandler>();
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<ICheckoutManager, CheckoutService>();
 
         }
 
