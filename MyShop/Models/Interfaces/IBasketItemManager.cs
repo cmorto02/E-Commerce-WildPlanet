@@ -9,7 +9,6 @@ namespace MyShop.Models.Interfaces
     {
         Task<BasketItems> GetBasketItem(int id);
 
-        Task<IEnumerable<BasketItems>> GetAmenities();
 
         Task UpdateBasketItem(int id, BasketItems BI);
 
