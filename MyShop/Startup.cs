@@ -52,11 +52,11 @@ namespace MyShop
                 .AddDefaultTokenProviders();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("UserDataConnection")));
+           options.UseSqlServer(Configuration.GetConnectionString("IdentityDefault")));
 
 
             services.AddDbContext<MyShopDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IInventoryManager, InventoryService>();
             services.AddScoped<IBasketManager, BasketService>();
             services.AddScoped<IBasketComponentManager, BasketComponentService>();
