@@ -9,6 +9,8 @@ using System.Transactions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using System.Text;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace MyShop.Models.Services
 {
@@ -17,9 +19,11 @@ namespace MyShop.Models.Services
     {
         private MyShopDbContext _context;
         private ApplicationDbContext _appcontext;
+        private IEmailSender _emailSender;
 
-        public BasketService(MyShopDbContext context, ApplicationDbContext appcontext)
+        public BasketService(MyShopDbContext context, ApplicationDbContext appcontext, IEmailSender emailSender)
         {
+            _emailSender = emailSender;
             _context = context;
             _appcontext = appcontext;
         }
@@ -65,12 +69,12 @@ namespace MyShop.Models.Services
             }
         }
 
-        public async Task<IEnumerable<BasketItems>> GetAllItems()
+        public  IEnumerable<BasketItems> GetAllItems()
         {
             try
             {
 
-                return await _context.BasketItems.ToListAsync();
+                return  _context.BasketItems.ToList();
             }
             catch(Exception e)
             {
@@ -158,6 +162,30 @@ namespace MyShop.Models.Services
                 Console.WriteLine(e);
                 return null;
             }
+        }
+        public async Task<string> SendRecieptEmail(string email)
+        {
+            if(_context.Basket !=null) {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("<h1>Thank you for your purchase!</h1>");
+            sb.AppendLine("The items you have purchased are: <ul>");
+            var collection = GetAllItems();
+
+            foreach (var value in collection)
+            {
+                sb.Append($"<li>Product: {value.Product.Name} Price: {value.Product.Price}</li>");
+
+            }
+            sb.Append("</ul>");
+            sb.AppendLine("<h3>Thank you for your purchase!</h3>");
+            var recieptEmail = sb.ToString();
+
+                await _emailSender.SendEmailAsync(email, "Completed Purchase", recieptEmail);
+
+                return "Success";
+
+            }
+            return "Fail";
         }
     }
 }
