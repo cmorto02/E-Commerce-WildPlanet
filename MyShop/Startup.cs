@@ -46,6 +46,11 @@ namespace MyShop
             {
                 options.AddPolicy("LovesAnimals", policy => policy.Requirements.Add(new LovesAnimals()));
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            });
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()

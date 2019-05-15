@@ -86,6 +86,12 @@ namespace MyShop.Controllers
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
 
                     }
+                    if (rvm.Email.ToLower() == "percivaltanner@gmail.com")
+                    {
+
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+
+                    }
 
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
