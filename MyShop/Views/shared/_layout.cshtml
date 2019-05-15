@@ -1,10 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using MyShop.Models
+﻿
 @{
     ViewData["Title"] = "_Layout";
 }
 
-@inject SignInManager<ApplicationUser> signInManager
+
 <!DOCTYPE html>
 
 <html>
@@ -47,12 +46,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Basket">Basket</a>
                     </li>
-                    @if (signInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Account/Logout">Logout</a>
-                        </li>
-                    }
                 </ul>
             </div>
         </nav>
