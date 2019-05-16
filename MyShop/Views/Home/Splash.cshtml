@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MyShop.Models
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<head>
+    <title>Home</title>
+</head>
+<body class="splash">
+    <div class=""></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+    </video>
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1 class="display-3">Wild Planet</h1>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
+                    @await Component.InvokeAsync("BasketComponent");
+                }
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <span>Welcome anonymous! <a href="/Account/Register">Click here to sign in!</a></span>
+                }
+                    <Button href="/Home/Home">Enter Site</Button>
+            </div>
+        </div>
+    </div>
+</body>
