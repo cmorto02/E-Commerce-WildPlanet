@@ -26,6 +26,8 @@ namespace MyShop.Models.Services
         {
             Order order = new Order
             {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 UserID = user.Id,
                 GrandTotal = grandTotal,
                 OrderDate = DateTime.Today
@@ -82,6 +84,12 @@ namespace MyShop.Models.Services
 
             }
             return "Fail";
+        }
+
+        public void UpdateOrder(Order order)
+        {
+            _context.Orders.Update(order);
+            _context.SaveChangesAsync();
         }
     }
 }

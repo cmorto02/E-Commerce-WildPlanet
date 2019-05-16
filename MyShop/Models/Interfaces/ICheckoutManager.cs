@@ -11,5 +11,7 @@ namespace MyShop.Models.Interfaces
         Task CreateOrderItem(Order order, BasketItems basketitem);
         Task<List<OrderItems>> GetOrderItems(int id);
         Task<Order> GetOrder(int id);
+        void UpdateOrder(Order order);
+        Task<string> SendRecieptEmail(string email);
     }
 }

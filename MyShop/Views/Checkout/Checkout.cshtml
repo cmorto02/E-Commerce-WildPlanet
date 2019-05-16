@@ -1,0 +1,71 @@
+﻿@model MyShop.Models.Order
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "_Layout";
+}
+
+<h1>Checkout</h1>
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Item:
+            </th>
+            <th>
+                Quantity:
+            </th>
+            <th>
+                Price:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BasketList)
+        {
+
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    $@item.LineItemAmount
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+Total: $@Model.TotalPrice*@
+
+
+<p>
+    Please fill out the shipping and payment information below for processing:
+</p>
+<form method="post" asp-action="Receipt">
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Zip" class="control-label"></label>
+        <input asp-for="Zip" class="form-control" />
+        <span asp-validation-for="Zip" class="text-danger"></span>
+    </div>
+    <input type="text" value="4111111111111111" readonly/>
+    <input type="text" value="0720" readonly />
+    <div class="form-group">
+        <button type="submit" value="Receipt">Checkout</button>
+    </div>
+</form>

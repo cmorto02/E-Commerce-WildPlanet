@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MyShop.Migrations
+namespace MyShop.Migrations.ApplicationDb
 {
-    public partial class @new : Migration
+    public partial class userdata : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

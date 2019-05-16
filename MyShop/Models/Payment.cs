@@ -20,23 +20,15 @@ namespace MyShop.Models
         /// </summary>
 
 
-
-
-
-
-
-
-
-
         private IBasketManager _basket;
-
         public IConfiguration Configuration { get; }
+
         public Payment(IConfiguration configuration, IBasketManager basket)
         {
             _basket = basket;
             Configuration = configuration;
         }
-        public string Run()
+        public bool Run(Order order)
         {
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
 
@@ -56,7 +48,7 @@ namespace MyShop.Models
             };
 
 
-            customerAddressType billingAddress = GetAddress();
+            customerAddressType billingAddress = GetAddress(order);
 
 
             paymentType paymentType = new paymentType
@@ -85,16 +77,14 @@ namespace MyShop.Models
             {
                 if(response.messages.resultCode == messageTypeEnum.Ok)
                 {
-                    return "Success";
+                    return true;
                 }
                 else
                 {
-                    return "Failure";
+                    return false;
                 }
             }
-
-
-            return "";
+            return false;
         }
         private lineItemType[] GetLineItems(List<Product> products)
         {
@@ -116,15 +106,15 @@ namespace MyShop.Models
             return items;
         }
 
-        customerAddressType GetAddress()
+        customerAddressType GetAddress(Order order)
         {
             customerAddressType address = new customerAddressType()
             {
-                firstName = "TempName",
-                lastName = "TempLastName",
-                address = "420 Lane North",
-                city = "Tacompton",
-                zip = "12345"
+                firstName = order.FirstName,
+                lastName = order.LastName,
+                address = order.Address,
+                city = order.City,
+                zip = order.Zip
             };
             return address;
         }
