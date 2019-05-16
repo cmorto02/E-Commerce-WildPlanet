@@ -36,7 +36,7 @@ namespace MyShop.Models
             _basket = basket;
             Configuration = configuration;
         }
-        public string Run()
+        public bool Run()
         {
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
 
@@ -85,16 +85,16 @@ namespace MyShop.Models
             {
                 if(response.messages.resultCode == messageTypeEnum.Ok)
                 {
-                    return "Success";
+                    return true;
                 }
                 else
                 {
-                    return "Failure";
+                    return false;
                 }
             }
 
 
-            return "";
+            return false;
         }
         private lineItemType[] GetLineItems(List<Product> products)
         {

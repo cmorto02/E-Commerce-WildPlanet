@@ -1,10 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using MyShop.Models
+﻿
 @{
     ViewData["Title"] = "_Layout";
 }
 
-@inject SignInManager<ApplicationUser> signInManager
+
 <!DOCTYPE html>
 
 <html>
@@ -26,7 +25,7 @@
     <main>
         <!--https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_template1-->
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <a class="navbar-brand" href="/Home">Home</a>
+            <a class="navbar-brand" href="/Home/Home">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -47,12 +46,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Basket">Basket</a>
                     </li>
-                    @if (signInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Account/Logout">Logout</a>
-                        </li>
-                    }
                 </ul>
             </div>
         </nav>

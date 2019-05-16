@@ -41,6 +41,7 @@ namespace MyShop.Controllers
             }
 
             order.OrderList = await _checkout.GetOrderItems(order.ID);
+            await _checkout.SendRecieptEmail(userName);
             return View(basket);
         }
     }
