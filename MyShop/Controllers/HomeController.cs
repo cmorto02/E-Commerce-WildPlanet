@@ -12,9 +12,14 @@ namespace MyShop.Controllers
         /// home page
         /// </summary>
         /// <returns>default landing home page view</returns>
+        public IActionResult Home()
+        {
+            return View("Index");
+        }
+
         public IActionResult Index()
         {
-            return View();
+            return View("Splash");
         }
     }
 }

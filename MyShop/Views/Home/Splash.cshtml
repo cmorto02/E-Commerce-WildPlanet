@@ -5,12 +5,12 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Splash";
     Layout = "_Layout";
 }
 
 <head>
-    <title>Home</title>
+    <title>Splash</title>
 </head>
 <body class="splash">
     <div class=""></div>
@@ -31,7 +31,7 @@
                 {
                     <span>Welcome anonymous! <a href="/Account/Register">Click here to sign in!</a></span>
                 }
-                    <Button href="/Home/Home">Enter Site</Button>
+                    <a asp-action="Home" >Enter Site</a>
             </div>
         </div>
     </div>
