@@ -5,23 +5,18 @@
 }
 
 <h1>Checkout</h1>
-
+Thank you for your purchase!
 <table class="table">
     <thead>
         <tr>
             <th>
+                Item:
             </th>
             <th>
+                Quantity:
             </th>
             <th>
-
-            </th>
-            <th>
-
-
-            </th>
-            <th>
-
+                Price:
             </th>
         </tr>
     </thead>
@@ -32,13 +27,13 @@
         <tr>
 
             <td>
-                Item: @Html.DisplayFor(modelItem => item.Product.Name)
+                @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
             <td>
-                Amount: @item.Quantity
+                @item.Quantity
             </td>
             <td>
-                Price: $@item.LineItemAmount
+                $@item.LineItemAmount
             </td>
 
 
@@ -47,4 +42,3 @@
     </tbody>
 </table>
         Total: $@Model.TotalPrice
-<a asp-action="Receipt" asp-controller="Checkout">Checkout</a>

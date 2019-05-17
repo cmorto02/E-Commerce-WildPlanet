@@ -21,7 +21,7 @@ namespace MyShop.data
                 {
                     ID = 1,
                     Name = "Pangolin",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a pangolin and receive a plush.",
                     ImageStuffedAnimal = "https://images-na.ssl-images-amazon.com/images/I/7194O4jEGnL._SY355_.jpg",
                     ImageAnimal = "http://yesofcorsa.com/wp-content/uploads/2017/06/Pangolin-Best-Wallpaper-1024x646.jpg",
@@ -32,7 +32,7 @@ namespace MyShop.data
                 {
                     ID = 2,
                     Name = "Amur Leopard",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name an Amur Leopard and receive a plush.",
                     ImageStuffedAnimal = "https://i.ebayimg.com/images/g/NQEAAOSwHntbmfbP/s-l300.jpg",
                     ImageAnimal = "http://cdn.animalhi.com/2560x1600/20121027/animals%20leopards%20amur%20leopard%202560x1600%20wallpaper_www.animalhi.com_40.jpg",
@@ -43,7 +43,7 @@ namespace MyShop.data
                 {
                     ID = 3,
                     Name = "Sumatran Orangutan",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Sumatran Orangutan and receive a plush.",
                     ImageStuffedAnimal = "https://zoostore.zoo.org/media/catalog/product/cache/6b1c09900b407c50fce2db5e66ebc123/1/2/12250-orangutan.jpg",
                     ImageAnimal = "https://ak8.picdn.net/shutterstock/videos/30904708/thumb/1.jpg",
@@ -54,7 +54,7 @@ namespace MyShop.data
                 {
                     ID = 4,
                     Name = "Cross River Gorilla",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Cross River Gorilla and receive a plush.",
                     ImageStuffedAnimal = "https://cdn3.volusion.com/9nxdj.fchy5/v/vspfiles/photos/AR-80431-2.jpg?1517907494",
                     ImageAnimal = "http://www.manyaratravel.com/wp-content/uploads/2015/04/Gorilla-with-baby.jpg",
@@ -65,7 +65,7 @@ namespace MyShop.data
                 {
                     ID = 5,
                     Name = "Hawksbill Sea Turtle",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Hawksbill Sea Turtle and receive a plush.",
                     ImageStuffedAnimal = "https://i.ebayimg.com/images/g/rwkAAOSw2BxafjbF/s-l640.jpg",
                     ImageAnimal = "https://voiceforthespeechless.com/wp-content/uploads/2017/02/hawksbill-seaturtle.png",
@@ -76,7 +76,7 @@ namespace MyShop.data
                 {
                     ID = 6,
                     Name = "Sumatran Tiger",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Sumatran Tiger and receive a plush.",
                     ImageStuffedAnimal = "https://image.dhgate.com/0x0s/f2-albu-g7-M01-75-01-rBVaSlsWKw2AZsz_AANSc4-UmmA074.jpg/raj-the-sumatran-tiger-19-inch-large-sumatran.jpg",
                     ImageAnimal = "https://www.waza.org/wp-content/uploads/2019/02/sumatran-tiger-wz-gsmp-m.jpg",
@@ -87,7 +87,7 @@ namespace MyShop.data
                 {
                     ID = 7,
                     Name = "Black Rhino",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Black Rhino and receive a plush.",
                     ImageStuffedAnimal = "https://images-na.ssl-images-amazon.com/images/I/71M7U89W78L._SX425_.jpg",
                     ImageAnimal = "https://www.helpingrhinos.org/userfiles/helpingrhinos.org/About%20Rhinos/Black-Rhino3-9-flip.jpg",
@@ -98,7 +98,7 @@ namespace MyShop.data
                 {
                     ID = 8,
                     Name = "Snow Leopard",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Snow Leopard and receive a plush.",
                     ImageStuffedAnimal = "https://gifts.worldwildlife.org/gift-center/images/species-adoptions/Snow-Leopard/Snow-Leopard-plush-z1.jpg",
                     ImageAnimal = "https://k6u8v6y8.stackpathcdn.com/blog/wp-content/uploads/2019/01/Snow-Leopard.jpg",
@@ -109,7 +109,7 @@ namespace MyShop.data
                 {
                     ID = 9,
                     Name = "Polar Bear",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Polar Bear and receive a plush.",
                     ImageStuffedAnimal = "https://images-na.ssl-images-amazon.com/images/I/611900XLxiL._SX425_.jpg",
                     ImageAnimal = "https://media.treehugger.com/assets/images/2018/10/polar-bear-kid.jpg.860x0_q70_crop-scale.jpg",
@@ -120,7 +120,7 @@ namespace MyShop.data
                 {
                     ID = 10,
                     Name = "Giant Panda",
-                    Price = 2400.00,
+                    Price = 2.00,
                     Description = "Name a Giant Panda and receive a plush.",
                     ImageStuffedAnimal = "https://images-na.ssl-images-amazon.com/images/I/71rbxOLyUSL._SX425_.jpg",
                     ImageAnimal = "https://www.sciencenews.org/sites/default/files/2019/01/main/articles/013019_JR_panda-diet_feat.jpg",
