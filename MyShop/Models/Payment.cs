@@ -14,11 +14,8 @@ namespace MyShop.Models
     public class Payment
     {
 
-
-        /// <summary>
-        /// FRONT ROW 5/6/2019 2:47:38 CONTINUE ONCE ORDER PAGE DONE
-        /// </summary>
-
+ 
+        ///model for payment
 
         private IBasketManager _basket;
         public IConfiguration Configuration { get; }

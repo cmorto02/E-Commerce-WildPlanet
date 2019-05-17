@@ -65,6 +65,8 @@ namespace MyShop.Controllers
                 }
 
 
+                ///Sets claims
+
                 if (result.Succeeded)
                 {
                     Claim nameClaim = new Claim("FullName", $"{user.FirstName} { user.LastName} ");
@@ -98,7 +100,7 @@ namespace MyShop.Controllers
               
 
 
-
+                    ///Sends emails on registration
                     await _emailSender.SendEmailAsync(rvm.Email, "Thank you for registering", "<p> Hello Welcome </p>");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);

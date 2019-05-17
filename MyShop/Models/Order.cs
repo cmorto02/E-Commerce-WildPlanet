@@ -7,6 +7,10 @@ namespace MyShop.Models
 {
     public class Order
     {
+
+        /// <summary>
+        /// properties for the order table
+        /// </summary>
         public int ID { get; set; }
         public string UserID { get; set; }
         public string FirstName { get; set; }

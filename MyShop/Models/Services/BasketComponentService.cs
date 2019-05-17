@@ -18,6 +18,12 @@ namespace MyShop.Models.Services
             _context = context;
             _appcontext = appcontext;
         }
+
+        /// <summary>
+        /// will retrieve the current basket state for a specific user
+        /// </summary>
+        /// <param name="userName">the user identification</param>
+        /// <returns>the current user basket</returns>
         public async Task<Basket> GetBasket(string userName)
         {
             var basket = _context.Basket.FirstOrDefault(x => x.UserName == userName);
