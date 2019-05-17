@@ -16,12 +16,24 @@ namespace MyShop.Models.Services
         private IEmailSender _emailSender;
         private MyShopDbContext _context;
 
+        /// <summary>
+        /// brings in contexts
+        /// </summary>
+        /// <param name="context">the shop db context</param>
+        /// <param name="emailSender">the email sender context</param>
+        /// <param name="basket">the basket context</param>
         public CheckoutService(MyShopDbContext context, IEmailSender emailSender, IBasketManager basket )
         {
             _basket = basket;
             _emailSender = emailSender;
             _context = context;
         }
+        /// <summary>
+        /// this will create a new order for the user
+        /// </summary>
+        /// <param name="user">user that is creating the order</param>
+        /// <param name="grandTotal">the total price</param>
+        /// <returns>the order obj</returns>
         public async Task<Order> CreateOrder(ApplicationUser user, double grandTotal)
         {
             Order order = new Order
@@ -36,7 +48,12 @@ namespace MyShop.Models.Services
             await _context.SaveChangesAsync();
             return order;
         }
-
+        /// <summary>
+        /// will ceate an order item
+        /// </summary>
+        /// <param name="order">will add items to a given order</param>
+        /// <param name="basketitem">will add the information for this basket item to the order items</param>
+        /// <returns>context update</returns>
         public async Task CreateOrderItem(Order order, BasketItems basketitem)
         {
             OrderItems orderItem = new OrderItems
@@ -49,17 +66,33 @@ namespace MyShop.Models.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// will retrieve a given order
+        /// </summary>
+        /// <param name="id">identification for specific order</param>
+        /// <returns>order obj</returns>
         public async Task<Order> GetOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);
             return order;
         }
 
+        /// <summary>
+        /// will retrieve an orders items
+        /// </summary>
+        /// <param name="id">identification for which item to retrieve from order</param>
+        /// <returns>orderItem obj </returns>
         public async Task<List<OrderItems>> GetOrderItems(int id)
         {
             var orderItems = await _context.OrderItems.Where(i => i.OrderID == id).ToListAsync();
             return orderItems;
         }
+
+       /// <summary>
+       /// sends an email to the user with information from their transaction on the order page
+       /// </summary>
+       /// <param name="email">identification for the user </param>
+       /// <returns>thank you message and email to given email address</returns>
         public async Task<string> SendRecieptEmail(string email)
         {
             if (_context.Basket != null)

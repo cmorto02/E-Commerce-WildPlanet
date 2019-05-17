@@ -128,6 +128,10 @@ namespace MyShop.data
                     AmmountLeft = 43,
                 });
         }
+
+        /// <summary>
+        /// sets the use and creation of tables through models of the following:
+        /// </summary>
         public DbSet<Product> Product { get; set; }
         public DbSet<Basket> Basket { get; set; }
         public DbSet<BasketItems> BasketItems { get; set; }

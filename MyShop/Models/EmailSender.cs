@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace MyShop.Models
 {
+    /// <summary>
+    /// model for sending emails to users
+    /// </summary>
 
     public class EmailSender : IEmailSender
     {

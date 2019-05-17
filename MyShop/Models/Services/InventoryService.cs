@@ -21,6 +21,11 @@ namespace MyShop.Models.Services
             return await _context.Product.ToListAsync();
         }
 
+        /// <summary>
+        /// will get a specific product
+        /// </summary>
+        /// <param name="id">product identification</param>
+        /// <returns>returns a specific product</returns>
         public async Task<Product> GetProduct(int id)
         {
             try
