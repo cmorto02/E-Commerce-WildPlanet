@@ -113,34 +113,77 @@ Unit testing is included in the AmandaFE/FrontendTesting project using the xUnit
 ## Data Model
 
 ### Overall Project Schema
-***[Add a description of your DB schema. Explain the relationships to me.]***
-![Database Schema](/assets/img/ERD.png)
-
+Our Project consists of two databases, one for our Userdata and one for our Shop data. 
+Our shop DB consists of:
+Basket(tied to the user)
+BasketItems(tied to the basket)
+Order(created from basket on checkout)
+OrderItems(created from BasketItems on checkout)
+Products(holds all of our shop items available for purchase)
 ---------------------------
 ## Model Properties and Requirements
 
-### Blog
+### Product
 
 | Parameter | Type | Required |
 | --- | --- | --- |
 | ID  | int | YES |
+| Name | string | YES |
+| Price | double | YES |
+| Description | string | YES |
+| ImageStuffedAnimal | img jpeg/png | YES |
+| ImageAnimal | img jpeg/png | YES |
 | Summary | string | YES |
-| Content | string | YES |
-| Tags | string(s) | NO |
-| Picture | img jpeg/png | NO |
-| Sentiment | float | NO |
-| Keywords | string(s) | NO |
-| Related Posts | links | NO |
-| Date | date/time object | YES |
+| AmountLeft | int | YES |
 
-
-### User
+### Basket
 
 | Parameter | Type | Required |
 | --- | --- | --- |
 | ID  | int | YES |
-| Name/Author | string | YES |
-| Posts | list | YES |
+| TotalItems | int | YES |
+| TotalPrice | double | YES |
+| UserName | string | YES |
+| BasketList | list | YES |
+
+
+### BasketItems
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| BasketID | int | YES |
+| ProductID | int | YES |
+| Product | product | YES |
+| Quantity | int | YES |
+| LineItemAmount | double | YES |
+
+
+### Order
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| UserID  | int | YES |
+| FirstName  | string | YES |
+| LastName  | string | YES |
+| Address  | string | YES |
+| City  | string | YES |
+| Zip  | string | YES |
+| Completed  | bool | YES |
+| OrderItems | list | YES |
+| GrandTotal | double | YES |
+| OrderDate | date/time object | YES |
+
+### OrderItems
+
+| Parameter | Type | Required |
+| --- | --- | --- |
+| ID  | int | YES |
+| ProductID | int | YES |
+| Quantity | int | YES |
+| OrderID | int | YES |
+
 
 ---------------------------
 
