@@ -1,10 +1,23 @@
 ﻿@model IEnumerable<MyShop.Models.Product>
+@using Microsoft.AspNetCore.Identity
+@using MyShop.Models
+@inject SignInManager<ApplicationUser> SignInManager
+
 @{
     ViewData["Title"] = "Index";
     Layout = "_layout";
 }
+
+<div class="float-right">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @await Component.InvokeAsync("BasketComponent");
+    }
+</div>
+
 <title>Shop</title>
 <h1>Shop</h1>
+
 
 <table class="table">
     <thead>
