@@ -22,16 +22,7 @@
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100 text-white">
                 <h1 class="display-3">Wild Planet</h1>
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
-                    @await Component.InvokeAsync("BasketComponent");
-                }
-                @if (!SignInManager.IsSignedIn(User))
-                {
-                    <span>Welcome anonymous! <a href="/Account/Register">Click here to sign in!</a></span>
-                }
-                    <a asp-action="Home" >Enter Site</a>
+                <a asp-action="Home">Enter Site</a>
             </div>
         </div>
     </div>

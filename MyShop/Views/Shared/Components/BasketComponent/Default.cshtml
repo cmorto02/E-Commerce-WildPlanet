@@ -12,13 +12,27 @@
 <body>
     <section style="border: 1px solid black">
         Basket:
+        <table>
+            <tr>
+                <th>
+                    Item:
+                </th>
+                <th>
+                    Price:
+                </th>
+            </tr>
         @foreach (var item in Model)
         {
-            <article>
-                <h3>@item.Name</h3>
-                <p>@item.Price</p>
-            </article>
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    $@item.Price.00
+                </td>
+            </tr>
         }
+        </table>
     </section>
 </body>
 </html>

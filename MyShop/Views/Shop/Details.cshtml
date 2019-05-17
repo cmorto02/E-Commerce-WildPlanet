@@ -1,9 +1,17 @@
 ﻿@model MyShop.Models.Product
+@using Microsoft.AspNetCore.Identity
+@using MyShop.Models
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Details";
     Layout = "_layout";
 }
-
+<div class="float-right">
+@if (SignInManager.IsSignedIn(User))
+{
+    @await Component.InvokeAsync("BasketComponent");
+}
+</div>
 <h1>Details</h1>
 
 <div>
@@ -52,10 +60,10 @@
 
 
     <form asp-controller="Basket" asp-action="Create" method="post">
-        
-            <input type="hidden" name="productID" value="@Model.ID" />
 
-            <input type="hidden" name="username" value="@User.Identity.Name" />
+        <input type="hidden" name="productID" value="@Model.ID" />
+
+        <input type="hidden" name="username" value="@User.Identity.Name" />
 
         <div class="form-group">
             <input type="submit" value="Add to cart!" class="btn btn-primary" />

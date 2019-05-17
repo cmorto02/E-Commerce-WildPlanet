@@ -38,6 +38,14 @@ namespace MyShop.Models.Services
                 Product product = await _context.Product
                                          .FirstOrDefaultAsync(x => x.ID == productID);
 
+                if (BasketExists(productID, username))
+                {
+                    BasketItems item = await _context.BasketItems.FirstOrDefaultAsync(x => x.ID == productID);
+                    item.Quantity++;
+                    item.LineItemAmount += product.Price;
+                }
+                else
+                {
                 BasketItems basketItem = new BasketItems()
                 {
                     BasketID = basket.ID,
@@ -47,6 +55,7 @@ namespace MyShop.Models.Services
                     LineItemAmount = product.Price
                 };
                 _context.BasketItems.Add(basketItem);
+                }
                 await _context.SaveChangesAsync();
             }
             catch(Exception e)
@@ -55,19 +64,11 @@ namespace MyShop.Models.Services
             }
         }
 
-        public bool BasketExists(int id)
+        public bool BasketExists(int id, string username)
         {
-            try
-            {
-                return _context.BasketItems.Any(e => e.ID == id);
-
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e);
-                return false;
-            }
+            Basket basket = _context.Basket
+                                         .FirstOrDefault(x => x.UserName == username);
+            return _context.BasketItems.Any(e => e.ID == id && e.BasketID == basket.ID);
         }
 
         public  IEnumerable<BasketItems> GetAllItems()

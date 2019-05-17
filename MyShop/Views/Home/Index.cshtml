@@ -1,8 +1,24 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using MyShop.Models
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Splash";
     Layout = "_Layout";
 }
-
-<h1>Home</h1>
-
+@if (SignInManager.IsSignedIn(User))
+{
+    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
+}
+<div class="float-right">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @await Component.InvokeAsync("BasketComponent");
+    }
+</div>
+@if (!SignInManager.IsSignedIn(User))
+{
+    <span>Welcome anonymous! <a href="/Account/Register">Click here to sign in!</a></span>
+}
