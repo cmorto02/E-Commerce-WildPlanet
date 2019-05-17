@@ -9,7 +9,7 @@ namespace MyShop.Pages.Profile
 {
     public class ProfileModel : PageModel
     {
-        public void OnGet()
+        public void OnGet(string username)
         {
 
         }
