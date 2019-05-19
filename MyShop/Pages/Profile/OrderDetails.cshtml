@@ -1,0 +1,39 @@
+﻿@page "{id}"
+@model MyShop.Pages.Profile.OrderDetailsModel
+@using MyShop.Models.Interfaces
+@inject ICheckoutManager CheckoutService
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "_layout";
+}
+
+<h1>OrderDetails</h1>
+
+
+<h3>
+    Order Number: @Model.order.ID
+</h3>
+<p>
+    Customer: @Model.order.LastName, @Model.order.FirstName
+</p>
+
+@foreach (var item in Model.order.OrderList)
+{
+    <p>
+        Product: @item.Name
+    </p>
+    <p>
+        Quantity: @item.Quantity
+
+    </p>
+    <p>
+        Price Ea:$@item.Price.00
+    </p>
+}
+<p>
+    Total: $@Model.order.GrandTotal.00
+</p>
+<p>
+    Date: @Model.order.OrderDate
+</p>
+

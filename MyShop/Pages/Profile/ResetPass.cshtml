@@ -6,10 +6,13 @@
 
 <form method="post">
     <p>
-        Change Password: <input asp-for="password" type="password" />
+        Current Password: <input asp-for="currentPassword" type="password" />
     </p>
     <p>
-        Confirm New Password: <input type="password" />
+        New Password: <input asp-for="password" type="password" />
+    </p>
+    <p>
+        Confirm New Password: <input asp-for="confirmPassword" type="password" />
     </p>
     <button type="submit">Save</button>
 </form>
