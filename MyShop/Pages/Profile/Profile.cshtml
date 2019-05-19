@@ -4,6 +4,7 @@
 @using MyShop.Models
 @inject SignInManager<ApplicationUser> SignInManager
 
+
 @{
     ViewData["Title"] = "Profile";
     Layout = "_Layout";
@@ -15,6 +16,8 @@
     {
         <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
         @await Component.InvokeAsync("BasketComponent");
+        <span>Your Email is: @User.Identity.Name</span>
+        <span></span>
     }
     @if (!SignInManager.IsSignedIn(User))
     {
