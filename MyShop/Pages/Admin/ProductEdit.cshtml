@@ -1,0 +1,37 @@
+﻿@page "{id?}"
+@model MyShop.Pages.Admin.ProductEditModel
+@{
+    ViewData["Title"] = "ProductEdit";
+    Layout = "_layout";
+}
+
+<h1>ProductEdit</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <div asp-validation-summary="All" class="Text-danger"></div>
+    <p>
+        Name: <input asp-for="Product.Name" type="Text" name="name"/>
+    </p>
+    <p>
+        Price: <input asp-for="Product.Price" type="number" name="price"/>
+    </p>
+    <p>
+        Description: <input asp-for="Product.Description" type="Text" name="description"/>
+    </p>
+    <p>
+        <label asp-for="ImageStuffedAnimal"></label> <input asp-for="ImageStuffedAnimal" type="file"/>
+    </p>
+    <p>
+        <label asp-for="ImageAnimal"></label> <input asp-for="ImageAnimal" type="file"/>
+    </p>
+    <p>
+        Summary: <input asp-for="Product.Summary" type="Text" name="summary"/>
+    </p>
+    <p>
+        Amount In Stock: <input asp-for="Product.AmmountLeft" type="number"/>
+    </p>
+    <button type="submit">Save</button>
+</form>
+<button method="Delete" asp-page-handler="Delete" class="button is-success is-danger is-outlined">Delete</button>

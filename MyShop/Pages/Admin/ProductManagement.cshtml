@@ -8,6 +8,7 @@
 }
 
 <h1>ProductManagement</h1>
+<h3><a asp-page="/Admin/ProductEdit">Add New Product</a></h3>
 
 @{
     var products = await InventoryService.GetALLProducts();
@@ -20,7 +21,5 @@
         @item.Name
     </p>
     <a asp-page="./ProductEdit" asp-route-id="@item.ID">Edit</a>
-    
-    <button method="post" asp-route-id="@item.ID" asp-page-handler="Delete" class="button is-success is-danger is-outlined">Delete</button>
-
+    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
 }

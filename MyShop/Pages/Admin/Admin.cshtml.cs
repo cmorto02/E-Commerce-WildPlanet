@@ -37,10 +37,7 @@ namespace MyShop.Pages.Admin
             var RetrieveUserInfo = _context.Users.Where(x => x.Id == ID);
         }
 
-        public async Task OnPostDelete(int id)
-        {
-            await _product.DeleteProduct(id);
-        }
+
 
         public async Task OnPostCreateNewProduct(string name, double price, string description, string imageStuffed, string image, string summary, int amountInStock )
         {
@@ -57,19 +54,6 @@ namespace MyShop.Pages.Admin
 
             await _product.NewProduct(product);
         }
-        public async Task OnPostUpdateProduct(int id, string name, double price, string description, string imageStuffed, string image, string summary, int amountInStock)
-        {
-            var product = await _product.GetProduct(id);
 
-            product.Name = name;
-            product.Price = price;
-            product.Description = description;
-            product.ImageStuffedAnimal = imageStuffed;
-            product.ImageAnimal = image;
-            product.Summary = summary;
-            product.AmmountLeft = amountInStock;
-
-            await _product.UpdateProduct(product);
-        }
     }
 }
