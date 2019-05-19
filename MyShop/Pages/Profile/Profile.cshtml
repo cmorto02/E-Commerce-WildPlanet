@@ -2,6 +2,7 @@
 @model MyShop.Pages.Profile.ProfileModel
 @using Microsoft.AspNetCore.Identity
 @using MyShop.Models
+@using MyShop.data
 
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -9,6 +10,7 @@
 @{
     ViewData["Title"] = "Profile";
     Layout = "_Layout";
+    
 }
 
 <h1>Profile</h1>
@@ -21,10 +23,10 @@
         <span>Your Name is: @Model.getName(User.Identity.Name)</span>
         <form>
 
-            @*<label asp-for="@Model.getName(User.Identity.Name)"></label>
+            <label asp-for="@Model."></label>
             <input asp-for="@Model.getName(User.Identity.Name)" />
-            <span asp-validation-for="@Model.getName(User.Identity.Name)" class="text-danger"></span>*@
-            @*<button type="submit" value="Register"> User</button>*@
+            <span asp-validation-for="@Model.getName(User.Identity.Name)" class="text-danger"></span>
+            <button type="submit" value="Register"> User</button>
         </form>
     }
     @if (!SignInManager.IsSignedIn(User))

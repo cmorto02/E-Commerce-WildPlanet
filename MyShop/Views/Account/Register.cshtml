@@ -4,41 +4,54 @@
     ViewData["Title"] = "Register";
     Layout = "_layout";
 }
-<title>Register</title>
+<head>
+
+    <title>Register</title>
+    <link rel="stylesheet" href="~/css/Reset.css" />
+    <link rel="stylesheet" href="~/css/Layout.css" />
+
+</head>
 <h1>Register!</h1>
 
-    <form method="post">
-  
-        <div asp-validation-summary="All" class="Text-danger"></div>
+<form method="post">
 
+    <div asp-validation-summary="All" class="Text-danger"></div>
+    <div class="FormElements">
         <label asp-for="Email"></label>
         <input asp-for="Email" />
         <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="FormElements">
 
         <label asp-for="FirstName"></label>
         <input asp-for="FirstName" />
         <span asp-validation-for="FirstName" class="text-danger"></span>
-
+    </div>
+    <div class="FormElements">
         <label asp-for="LastName"></label>
         <input asp-for="LastName" />
         <span asp-validation-for="LastName" class="text-danger"></span>
-
+    </div>
+    <div class="FormElements">
         <label asp-for="Birthday"></label>
         <input asp-for="Birthday" />
         <span asp-validation-for="Birthday" class="text-danger"></span>
-
+    </div>
+    <div class="FormElements">
         <label asp-for="Password"></label>
         <input asp-for="Password" />
         <span asp-validation-for="Password" class="text-danger"></span>
-
+    </div>
+    <div class="FormElements">
         <label asp-for="ConfirmPassword"></label>
         <input asp-for="ConfirmPassword" />
         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-      
+    </div>
+    <div class="FormElements">
         <label asp-for="LoveAnimals"></label>
         @Html.CheckBox("LoveAnimals", "True")
         <span asp-validation-for="LoveAnimals" class="text-danger"></span>
-
-        <button type="submit" value="Register">Register User</button>
-    </form>
+    </div>
+    <button type="submit" value="Register">Register User</button>
+</form>
 
