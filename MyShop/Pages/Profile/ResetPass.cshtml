@@ -2,9 +2,11 @@
 @model MyShop.Pages.Profile.IndexModel
 @{
 }
+
+
 <form method="post">
     <p>
-        Change Password: <input type="password" />
+        Change Password: <input asp-for="password" type="password" />
     </p>
     <p>
         Confirm New Password: <input type="password" />
