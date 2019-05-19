@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyShop.Migrations.ApplicationDb
 {
-    public partial class userdata : Migration
+    public partial class seed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

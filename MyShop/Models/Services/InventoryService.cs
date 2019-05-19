@@ -16,9 +16,23 @@ namespace MyShop.Models.Services
         {
             _context = context;
         }
-        public async Task<List<Product>> GetALLProducts()
+
+        public async Task DeleteProduct(int id)
+        {
+            Product product = _context.Product.FirstOrDefault(i => i.ID == id);
+            _context.Product.Remove(product);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetALLProducts()
         {
             return await _context.Product.ToListAsync();
+        }
+        public async Task<List<Product>> GetOrderedProducts()
+        {
+            var prods = await GetALLProducts();
+            var orderedProds = prods.OrderByDescending(i => i.ID).ToList();
+            return orderedProds;
         }
 
         public async Task<Product> GetProduct(int id)
@@ -35,6 +49,18 @@ namespace MyShop.Models.Services
                 Console.WriteLine(e);
                 return null;
             }
+        }
+
+        public async Task NewProduct(Product product)
+        {
+            _context.Product.Add(product);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateProduct(Product product)
+        {
+            _context.Product.Update(product);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -92,6 +92,18 @@ namespace MyShop.Controllers
                         await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
 
                     }
+                    if (rvm.Email.ToLower() == "chrismorton.cm@gmail.com")
+                    {
+
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+
+                    }
+                    if (rvm.Email.ToLower() == "ntibbals@outlook.com")
+                    {
+
+                        await _userManager.AddToRoleAsync(user, ApplicationRoles.Admin);
+
+                    }
 
                     await _userManager.AddToRoleAsync(user, ApplicationRoles.Member);
 
@@ -141,6 +153,11 @@ namespace MyShop.Controllers
                 var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
                 if (result.Succeeded)
                 {
+                    var signedIn = await _userManager.FindByEmailAsync(lvm.Email);
+                    if (await _userManager.IsInRoleAsync(signedIn, ApplicationRoles.Admin))
+                    {
+                        return LocalRedirect("~/Admin/Admin");
+                    }
                     return RedirectToAction("Index", "Home");
                 }
 

@@ -1,0 +1,26 @@
+﻿@page
+@model MyShop.Pages.Admin.ProductManagementModel
+@using MyShop.Interfaces
+@inject IInventoryManager InventoryService
+@{
+    ViewData["Title"] = "ProductManagement";
+    Layout = "_layout";
+}
+
+<h1>ProductManagement</h1>
+
+@{
+    var products = await InventoryService.GetALLProducts();
+
+}
+
+@foreach (var item in products)
+{
+    <p>
+        @item.Name
+    </p>
+    <a asp-page="./ProductEdit" asp-route-id="@item.ID">Edit</a>
+    
+    <button method="post" asp-route-id="@item.ID" asp-page-handler="Delete" class="button is-success is-danger is-outlined">Delete</button>
+
+}

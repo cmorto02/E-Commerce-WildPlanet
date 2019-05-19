@@ -10,8 +10,8 @@ using MyShop.data;
 namespace MyShop.Migrations
 {
     [DbContext(typeof(MyShopDbContext))]
-    [Migration("20190516182107_seeded")]
-    partial class seeded
+    [Migration("20190519000842_seed")]
+    partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,7 +96,13 @@ namespace MyShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("LineItemAmount");
+
+                    b.Property<string>("Name");
+
                     b.Property<int>("OrderID");
+
+                    b.Property<double>("Price");
 
                     b.Property<int>("ProductID");
 

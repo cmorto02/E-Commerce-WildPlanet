@@ -46,7 +46,7 @@ namespace MyShop.Controllers
             order.Address = address;
             order.City = city;
             order.Zip = zip;
-            _checkout.UpdateOrder(order);
+            await _checkout.UpdateOrder(order);
             foreach (var item in basket.BasketList)
             {
                 await _checkout.CreateOrderItem(order, item);
@@ -55,7 +55,7 @@ namespace MyShop.Controllers
 
             Payment payment = new Payment(Configuration, _context);
             order.Completed = payment.Run(order);
-            _checkout.UpdateOrder(order);
+            await _checkout.UpdateOrder(order);
             if (order.Completed == true)
             {
                 await _checkout.SendRecieptEmail(user.Email);
