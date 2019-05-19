@@ -76,10 +76,10 @@ namespace MyShop.Models.Services
             return await _shop.Orders.ToListAsync();
         }
 
-        public async Task<List<Order>> GetLastTenOrders()
+        public async Task<List<Order>> GetLastTenOrders(int number)
         {
             var orders = await GetAllOrders();
-            var tenOrders = orders.OrderByDescending(i => i.ID).Take(10).ToList();
+            var tenOrders = orders.OrderByDescending(i => i.ID).Take(number).ToList();
             return tenOrders;
         }
 

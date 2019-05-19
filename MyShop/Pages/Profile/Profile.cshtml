@@ -1,36 +1,62 @@
-﻿@page
+﻿@page "{id}"
 @model MyShop.Pages.Profile.ProfileModel
 @using Microsoft.AspNetCore.Identity
 @using MyShop.Models
-@using MyShop.data
-
-@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> userManager
+@using MyShop.Models.Interfaces
+@inject ICheckoutManager CheckoutService
 
 
 @{
     ViewData["Title"] = "Profile";
     Layout = "_Layout";
-    
+
 }
 
 <h1>Profile</h1>
-<div>
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
-        @await Component.InvokeAsync("BasketComponent");
-        <span>Your Email is: @User.Identity.Name</span>
-        <span>Your Name is: @Model.getName(User.Identity.Name)</span>
-        <form>
+@{
+    var email = User.Identity.Name;
+    var user = await userManager.FindByEmailAsync(email);
+}
 
-            <label asp-for="@Model."></label>
-            <input asp-for="@Model.getName(User.Identity.Name)" />
-            <span asp-validation-for="@Model.getName(User.Identity.Name)" class="text-danger"></span>
-            <button type="submit" value="Register"> User</button>
-        </form>
-    }
-    @if (!SignInManager.IsSignedIn(User))
-    {
-        <span>Welcome anonymous! <a href="/Account/Register">Click here to sign in!</a></span>
-    }
-</div>
+<form method="post" enctype="multipart/form-data">
+    <p>
+        <label asp-for="User.FirstName">First Name:</label>
+        <input asp-for="User.FirstName" value="@user.FirstName" />
+    </p>
+    <button type="submit">Save</button>
+</form>
+<p>
+    Last Name: @user.LastName
+</p>
+<p>
+    Email: @user.Email
+</p>
+<form method="post">
+    <p>
+        Change Password: <input type="text" />
+    </p>
+    <p>
+        Confirm New Password: <input type="text" />
+    </p>
+    <button type="submit">Save</button>
+</form>
+
+@{
+    var lastTen = await CheckoutService.GetLastTenOrders(5);
+}
+
+@foreach (var item in lastTen)
+{
+    <h3>Customer: @item.LastName, @item.FirstName</h3>
+    <p>
+        Total: $@item.GrandTotal.00
+    </p>
+    <p>
+        Date: @item.OrderDate
+    </p>
+    <p>
+        Completed: @item.Completed
+    </p>
+    <a asp-page="./OrderDetails" asp-route-id="@item.ID">View Details</a>
+}
