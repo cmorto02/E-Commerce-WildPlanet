@@ -12,7 +12,7 @@
 <a asp-page="/Admin/ProductManagement" id="button-new">Products</a>
 
 @{
-    var lastTen = await CheckoutService.GetLastTenOrders();
+    var lastTen = await CheckoutService.GetLastTenOrders(10);
 }
 
 @foreach (var item in lastTen)

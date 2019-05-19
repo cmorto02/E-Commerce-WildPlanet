@@ -14,7 +14,7 @@ namespace MyShop.Models.Interfaces
         Task<string> UpdateOrder(Order order);
         Task<string> SendRecieptEmail(string email);
         Task<List<Order>> GetAllOrders();
-        Task<List<Order>> GetLastTenOrders();
+        Task<List<Order>> GetLastTenOrders(int number);
         Task<List<Order>> GetUserOrders();
     }
 }

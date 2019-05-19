@@ -28,32 +28,10 @@ namespace MyShop.Pages.Admin
             _order = order;
         }
         [FromRoute]
-        public string ID { get; set; }
-
-        
-       
+        public string ID { get; set; }      
         public void OnGet()
         {
             var RetrieveUserInfo = _context.Users.Where(x => x.Id == ID);
         }
-
-
-
-        public async Task OnPostCreateNewProduct(string name, double price, string description, string imageStuffed, string image, string summary, int amountInStock )
-        {
-            Product product = new Product()
-            {
-                Name = name,
-                Price = price,
-                Description = description,
-                ImageStuffedAnimal = imageStuffed,
-                ImageAnimal = image,
-                Summary = summary,
-                AmmountLeft = amountInStock
-            };
-
-            await _product.NewProduct(product);
-        }
-
     }
 }

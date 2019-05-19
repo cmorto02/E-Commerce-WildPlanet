@@ -15,7 +15,7 @@
 </head>
 @if (SignInManager.IsSignedIn(User))
 {
-    <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
+    <span>Welcome @User.Claims.Last(c => c.Type == "FullName").Value!</span>
 }
 <div class="float-right">
     @if (SignInManager.IsSignedIn(User))
