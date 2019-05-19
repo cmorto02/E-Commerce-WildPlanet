@@ -15,7 +15,7 @@ namespace MyShop.Models.Interfaces
 
         IEnumerable<BasketItems> GetAllItems();
 
-        bool BasketExists(int id);
+        bool BasketExists(int id, string username);
 
         Task UpdateBasketItem(int id, BasketItems basketItems);
 

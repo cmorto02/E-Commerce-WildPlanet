@@ -26,7 +26,7 @@ namespace MyShop
                 {
                     StartupDBInitializer.SeedData(services);
                 }
-                catch (Exception w)
+                catch (Exception)
                 {
                     //Use _Ilogger to log data
                 }

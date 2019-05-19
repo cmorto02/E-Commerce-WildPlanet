@@ -7,8 +7,15 @@ namespace MyShop.Models
 {
     public class OrderItems
     {
+
+        /// <summary>
+        /// properties for the data table
+        /// </summary>
         public int ID { get; set; }
         public int ProductID { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public double LineItemAmount { get; set; }
         public int Quantity { get; set; }
         public int OrderID { get; set; }
     }

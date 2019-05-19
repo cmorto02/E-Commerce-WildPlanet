@@ -27,6 +27,13 @@ namespace MyShop.Models.Services
             _context = context;
             _appcontext = appcontext;
         }
+
+        /// <summary>
+        /// will add a product to the basket of the user
+        /// </summary>
+        /// <param name="productID">allows us to select a product</param>
+        /// <param name="username">allows us to pair selected products to an user</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task AddBasketItem(int productID, string username)
         {
@@ -38,6 +45,14 @@ namespace MyShop.Models.Services
                 Product product = await _context.Product
                                          .FirstOrDefaultAsync(x => x.ID == productID);
 
+                if (BasketExists(productID, username))
+                {
+                    BasketItems item = await _context.BasketItems.FirstOrDefaultAsync(x => x.ID == productID);
+                    item.Quantity++;
+                    item.LineItemAmount += product.Price;
+                }
+                else
+                {
                 BasketItems basketItem = new BasketItems()
                 {
                     BasketID = basket.ID,
@@ -47,6 +62,7 @@ namespace MyShop.Models.Services
                     LineItemAmount = product.Price
                 };
                 _context.BasketItems.Add(basketItem);
+                }
                 await _context.SaveChangesAsync();
             }
             catch(Exception e)
@@ -54,20 +70,17 @@ namespace MyShop.Models.Services
                 Console.WriteLine(e);
             }
         }
-
-        public bool BasketExists(int id)
+        /// <summary>
+        /// used in the edit
+        /// </summary>
+        /// <param name="id">checks id of basket for user (ensures logged in) </param>
+        /// <param name="username">user identification</param>
+        /// <returns>bool</returns>
+        public bool BasketExists(int id, string username)
         {
-            try
-            {
-                return _context.BasketItems.Any(e => e.ID == id);
-
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e);
-                return false;
-            }
+            Basket basket = _context.Basket
+                                         .FirstOrDefault(x => x.UserName == username);
+            return _context.BasketItems.Any(e => e.ID == id && e.BasketID == basket.ID);
         }
 
         public  IEnumerable<BasketItems> GetAllItems()
@@ -83,7 +96,12 @@ namespace MyShop.Models.Services
                 return null;
             }
         }
-
+        /// <summary>
+        /// updates a given basket item 
+        /// </summary>
+        /// <param name="id">selects the item in the basket</param>
+        /// <param name="basketItems">updates obj with a newly created obj with updates</param>
+        /// <returns>update</returns>
         public async Task UpdateBasketItem(int id, [Bind("ID,BasketID,ProductID,Product,Quantity,LineItemAmount")]BasketItems basketItems)
         { 
             try
@@ -99,7 +117,6 @@ namespace MyShop.Models.Services
 
             }
         }
-
         public async Task<BasketItems> RemoveBasketItem(int basketID)
         {
             try
@@ -114,6 +131,11 @@ namespace MyShop.Models.Services
                 return null;
             }
         }
+        /// <summary>
+        /// removes a selected item from the users basket
+        /// </summary>
+        /// <param name="basketID">the baskrt for the user</param>
+        /// <returns>updated basket (removed) </returns>
         public async Task RemoveBasketItemFR(int basketID)
         {
             try
@@ -129,12 +151,22 @@ namespace MyShop.Models.Services
             }
         }
 
+        /// <summary>
+        /// create a new basket for an user 
+        /// </summary>
+        /// <param name="basket">the basket obj on registration</param>
+        /// <returns>basket is added to the db</returns>
         public async Task CreateBasket(Basket basket)
         {
             _context.Add(basket);
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Returns a basket for a specific user
+        /// </summary>
+        /// <param name="userName">user identification</param>
+        /// <returns>the basket for the user</returns>
         public async Task<Basket> GetBasket(string userName)
         {
             var basket = _context.Basket.FirstOrDefault(x => x.UserName == userName);
@@ -145,6 +177,12 @@ namespace MyShop.Models.Services
             }
             return basket;
         }
+
+        /// <summary>
+        /// selects a specific item in the basket for an user.
+        /// </summary>
+        /// <param name="id">basket item identification</param>
+        /// <returns>the basket item that was selected</returns>
         public async Task<BasketItems> GetBasketItem(int id)
         {
             try

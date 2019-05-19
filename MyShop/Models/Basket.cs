@@ -7,6 +7,9 @@ namespace MyShop.Models
 {
     public class Basket
     {
+        /// <summary>
+        /// properties for the basket table
+        /// </summary>
         public int ID { get; set; }
         public int TotalItems { get; set; }
         public double TotalPrice { get; set; }

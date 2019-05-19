@@ -14,29 +14,18 @@ namespace MyShop.Models
     public class Payment
     {
 
-
-        /// <summary>
-        /// FRONT ROW 5/6/2019 2:47:38 CONTINUE ONCE ORDER PAGE DONE
-        /// </summary>
-
-
-
-
-
-
-
-
-
+ 
+        ///model for payment
 
         private IBasketManager _basket;
-
         public IConfiguration Configuration { get; }
+
         public Payment(IConfiguration configuration, IBasketManager basket)
         {
             _basket = basket;
             Configuration = configuration;
         }
-        public bool Run()
+        public bool Run(Order order)
         {
             ApiOperationBase<ANetApiRequest, ANetApiResponse>.RunEnvironment = AuthorizeNet.Environment.SANDBOX;
 
@@ -56,7 +45,7 @@ namespace MyShop.Models
             };
 
 
-            customerAddressType billingAddress = GetAddress();
+            customerAddressType billingAddress = GetAddress(order);
 
 
             paymentType paymentType = new paymentType
@@ -92,8 +81,6 @@ namespace MyShop.Models
                     return false;
                 }
             }
-
-
             return false;
         }
         private lineItemType[] GetLineItems(List<Product> products)
@@ -116,15 +103,15 @@ namespace MyShop.Models
             return items;
         }
 
-        customerAddressType GetAddress()
+        customerAddressType GetAddress(Order order)
         {
             customerAddressType address = new customerAddressType()
             {
-                firstName = "TempName",
-                lastName = "TempLastName",
-                address = "420 Lane North",
-                city = "Tacompton",
-                zip = "12345"
+                firstName = order.FirstName,
+                lastName = order.LastName,
+                address = order.Address,
+                city = order.City,
+                zip = order.Zip
             };
             return address;
         }
