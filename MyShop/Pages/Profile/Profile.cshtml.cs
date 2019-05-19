@@ -22,10 +22,16 @@ namespace MyShop.Pages.Profile
         }
         public void OnGet(string username)
         {
-           
-            
+
             
 
+        }
+        public IQueryable<string> getName(string username)
+        {
+
+            var getName = from x in _context.Users.Where(x => x.Email == username)
+            select x.FirstName;
+            return getName;
         }
     }
 }

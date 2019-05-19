@@ -2,6 +2,7 @@
 @model MyShop.Pages.Profile.ProfileModel
 @using Microsoft.AspNetCore.Identity
 @using MyShop.Models
+
 @inject SignInManager<ApplicationUser> SignInManager
 
 
@@ -17,7 +18,14 @@
         <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>
         @await Component.InvokeAsync("BasketComponent");
         <span>Your Email is: @User.Identity.Name</span>
-        <span></span>
+        <span>Your Name is: @Model.getName(User.Identity.Name)</span>
+        <form>
+
+            @*<label asp-for="@Model.getName(User.Identity.Name)"></label>
+            <input asp-for="@Model.getName(User.Identity.Name)" />
+            <span asp-validation-for="@Model.getName(User.Identity.Name)" class="text-danger"></span>*@
+            @*<button type="submit" value="Register"> User</button>*@
+        </form>
     }
     @if (!SignInManager.IsSignedIn(User))
     {
