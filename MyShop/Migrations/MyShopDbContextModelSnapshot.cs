@@ -94,7 +94,13 @@ namespace MyShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("LineItemAmount");
+
+                    b.Property<string>("Name");
+
                     b.Property<int>("OrderID");
+
+                    b.Property<double>("Price");
 
                     b.Property<int>("ProductID");
 

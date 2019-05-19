@@ -10,8 +10,8 @@ using MyShop.data;
 namespace MyShop.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190516182121_userdata")]
-    partial class userdata
+    [Migration("20190519000851_seed")]
+    partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

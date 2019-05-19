@@ -12,10 +12,16 @@ namespace MyShop.Interfaces
         /// gets all products to list on the shop page
         /// </summary>
         /// <returns>List of all products</returns>
-        Task<List<Product>> GetALLProducts();
+        Task<IEnumerable<Product>> GetALLProducts();
 
         Task<Product> GetProduct(int id);
-        
 
+        Task NewProduct(Product product);
+
+        Task UpdateProduct(Product product);
+
+        Task DeleteProduct(int id);
+
+        Task<List<Product>> GetOrderedProducts();
     }
 }

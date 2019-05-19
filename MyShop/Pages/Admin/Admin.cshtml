@@ -1,9 +1,31 @@
-﻿@page "{id}"
+﻿@page
 @model MyShop.Pages.Admin.AdminModel
+@using MyShop.Models.Interfaces
+@inject ICheckoutManager CheckoutService
 @{
     ViewData["Title"] = "Admin";
+    Layout = "_Layout";
 }
 
-<h1>Admin</h1>
+<h1>Admin Dashboard</h1>
 
-<p>Admin page!</p>
+<a asp-page="/Admin/ProductManagement" id="button-new">Products</a>
+
+@{
+    var lastTen = await CheckoutService.GetLastTenOrders();
+}
+
+@foreach (var item in lastTen)
+{
+    <h3>Customer: @item.LastName, @item.FirstName</h3>
+    <p>
+        Total: $@item.GrandTotal.00
+    </p>
+    <p>
+        Date: @item.OrderDate
+    </p>
+    <p>
+        Completed: @item.Completed
+    </p>
+    <a asp-page="./OrderDetails" asp-route-id="@item.ID">View Details</a>
+}
