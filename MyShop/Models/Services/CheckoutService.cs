@@ -24,7 +24,7 @@ namespace MyShop.Models.Services
         /// <param name="emailSender">the email sender context</param>
         /// <param name="basket">the basket context</param>
         public CheckoutService(MyShopDbContext context, IEmailSender emailSender, IBasketManager basket, IInventoryManager product)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> bugfixing_3
+
         {
             _basket = basket;
             _emailSender = emailSender;
