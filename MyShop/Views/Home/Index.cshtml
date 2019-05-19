@@ -8,6 +8,11 @@
     ViewData["Title"] = "Splash";
     Layout = "_Layout";
 }
+<head>
+    <link rel="stylesheet" href="~/css/Reset.css" />
+    <link rel="stylesheet" href="~/css/Layout.css" />
+
+</head>
 @if (SignInManager.IsSignedIn(User))
 {
     <span>Welcome @User.Claims.First(c => c.Type == "FullName").Value!</span>

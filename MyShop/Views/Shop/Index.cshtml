@@ -14,8 +14,13 @@
         @await Component.InvokeAsync("BasketComponent");
     }
 </div>
+<head>
+    <title>Shop</title>
+    <link rel="stylesheet" href="~/css/Reset.css" />
+    <link rel="stylesheet" href="~/css/Layout.css" />
 
-<title>Shop</title>
+
+</head>
 <h1>Shop</h1>
 
 
@@ -41,6 +46,9 @@
                 @Html.DisplayNameFor(model => model.ImageAnimal)
 
             </th>
+            <th>
+                Get Details
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <img src="@Html.DisplayFor(modelItem => item.ImageStuffedAnimal)" alt="img" style="width:300px" />
+                    <img src="@Html.DisplayFor(modelItem => item.ImageStuffedAnimal)" alt="img" style="width:200px" />
 
                 </td>
                 <td>
@@ -64,11 +72,15 @@
 
                 </td>
                 <td>
-                    <img src="@Html.DisplayFor(modelItem => item.ImageAnimal)" alt="img" style="width:300px" />
+                    <img src="@Html.DisplayFor(modelItem => item.ImageAnimal)" alt="img" style="width:200px" />
                 </td>
+                
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.ID" >Details</a >
+
                 </td>
+                
+                
 
             </tr>
         }
