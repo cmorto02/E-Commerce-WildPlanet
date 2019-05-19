@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyShop.data;
@@ -44,6 +45,21 @@ namespace MyShop.Pages.Profile
 
             await _userManager.UpdateAsync(user);
             return RedirectToPage("/Profile/Profile", new { id = user.Email });
+        }
+        public async Task<IActionResult> OnPostPassword(string password)
+        {
+            ///generates token for the password reset to be sent in email to verify that the owner of the profile has requested to reset password
+            string code = await _userManager.GeneratePasswordResetTokenAsync(User);
+
+
+
+            IdentityResult result = await _userManager.ResetPasswordAsync(User, code, password);
+
+
+
+            await _userManager.UpdateAsync(User);
+            return RedirectToPage("/Profile/Profile", new { id = User.Email });
+
         }
 
     }
