@@ -10,7 +10,7 @@ using MyShop.data;
 namespace MyShop.Migrations
 {
     [DbContext(typeof(MyShopDbContext))]
-    [Migration("20190519203248_seed")]
+    [Migration("20190520005823_seed")]
     partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

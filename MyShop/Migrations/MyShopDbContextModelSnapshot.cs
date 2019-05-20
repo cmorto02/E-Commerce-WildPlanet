@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyShop.data;
 
-namespace MyShop.Migrations.MyShopDb
+namespace MyShop.Migrations
 {
     [DbContext(typeof(MyShopDbContext))]
     partial class MyShopDbContextModelSnapshot : ModelSnapshot
